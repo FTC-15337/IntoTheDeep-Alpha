@@ -55,7 +55,7 @@ public class gamepad2Controls extends Thread{
                 }
 
 
-                // The code below is used for putting the sample into the basket:
+                // The code below is used for raising everything
                 while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
