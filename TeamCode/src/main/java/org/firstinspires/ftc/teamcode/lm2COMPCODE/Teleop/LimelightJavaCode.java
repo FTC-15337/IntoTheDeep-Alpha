@@ -37,23 +37,23 @@ public class LimelightJavaCode extends LinearOpMode
             {
 
                 // Get the horizontal angle (tx) from the Limelight
-                double tx = result.getTx();  // Horizontal angle to the AprilTag (in degrees)
+                double tx = result.getTx();  // Horizontal angle to the AprilTag
+                double ty = result.getTy(); // Vertical angle to the AprilTag
 
-                // Calculate the horizontal distance to the target
+                // Calculate horizontal distance to AprilTag
                 double horizontalDistance = calculateHorizontalDistance(tx);
 
-                // Display the result in the telemetry
+                // Display the result
                 telemetry.addData("tx (angle)", tx);
-                telemetry.addData("Horizontal Distance (m)", horizontalDistance);
+                telemetry.addData("ty (angle)" , ty);
+                telemetry.addData("Horizontal Distance To AprilTag", horizontalDistance);
                 telemetry.update();
             }
 
-            // Wait before looping again
-            //idle();
         }
     }
 
-    // Method to calculate horizontal distance using camera angle (tx)
+    // Method that calculates the horizontal distance using tx
     private double calculateHorizontalDistance(double tx)
     {
         // Convert tx from degrees to radians
