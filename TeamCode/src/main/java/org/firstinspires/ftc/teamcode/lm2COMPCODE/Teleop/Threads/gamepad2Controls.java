@@ -8,8 +8,6 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Teleop;
 
-import kotlin.io.Constantskt;
-
 public class gamepad2Controls extends Thread{
     public boolean running = true;
     public boolean resetEnabled = false;
