@@ -33,8 +33,6 @@ public class LimelightAuto extends LinearOpMode
             limelight.setPollRateHz(100);  // Poll rate for Limelight
             LLResult result = limelight.getLatestResult();
 
-            telemetry.addLine().addData("Where", 1);
-
             if (result != null && result.isValid())
             {
                 telemetry.addLine().addData("Where", 2);
