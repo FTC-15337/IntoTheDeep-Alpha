@@ -39,11 +39,11 @@ public class LimelightAuto extends LinearOpMode
                 double tx = result.getTx();  // Horizontal angle to the AprilTag (in degrees)
 
                 // Calculate the horizontal distance to the target
-                double horizontalDistance = calculateHorizontalDistance(tx);
+                double horizontalDistance1 = calculateHorizontalDistance(tx);
 
                 // Display the result in the telemetry
                 telemetry.addData("tx (angle)", tx);
-                telemetry.addData("Horizontal Distance (m)", horizontalDistance);
+                telemetry.addData("Horizontal Distance (m)", horizontalDistance1);
                 telemetry.update();
             }
 
