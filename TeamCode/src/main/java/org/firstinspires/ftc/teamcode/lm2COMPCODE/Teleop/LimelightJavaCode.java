@@ -29,6 +29,8 @@ public class LimelightJavaCode extends LinearOpMode
 
         waitForStart();
 
+        telemetry.addLine("Limelight AprilTag detection has started");
+
         while (opModeIsActive()) {
             limelight.setPollRateHz(100);  // Poll rate for Limelight
             LLResult result = limelight.getLatestResult();
@@ -38,7 +40,8 @@ public class LimelightJavaCode extends LinearOpMode
 
                 // Get the horizontal angle (tx) from the Limelight
                 double tx = result.getTx();  // Horizontal angle to the AprilTag
-                double ty = result.getTy(); // Vertical angle to the AprilTag
+                double ty = result.getTy();// Vertical angle to the AprilTag
+                double ta = result.getTa(); // Tag ID
 
                 // Calculate horizontal distance to AprilTag
                 double horizontalDistance = calculateHorizontalDistance(tx);
@@ -47,7 +50,12 @@ public class LimelightJavaCode extends LinearOpMode
                 telemetry.addData("tx (angle)", tx);
                 telemetry.addData("ty (angle)" , ty);
                 telemetry.addData("Horizontal Distance To AprilTag", horizontalDistance);
-                telemetry.update();
+                telemetry.update(); // Updates Telemetry
+
+                if (horizontalDistance > 0.5)
+                {
+                    telemetry.addLine("Less than 0.5 meters away from AprilTag");
+                }
             }
 
         }
@@ -65,7 +73,8 @@ public class LimelightJavaCode extends LinearOpMode
         //Returns final distance value
 
         telemetry.addLine().addData("distance", distance);
-
+        //Returns and prints the distance
         return distance;
+
     }
 }
