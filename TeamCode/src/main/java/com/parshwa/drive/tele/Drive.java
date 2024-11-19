@@ -56,11 +56,11 @@ public class Drive implements DriveInterface {
                 break;
             case MecanumFeildOriented:
                 FeildOreintedMode(froward, strafe, rotate, speed);
-                telemetry.addLine("Mechanum FeildOreintedDrive is running");
+                //telemetry.addLine("Mechanum FeildOreintedDrive is running");
                 break;
             case MecanumRobotOriented:
                 RobotOrientedMode(froward, strafe, rotate, speed);
-                telemetry.addLine("Mechanum RobotOreintedDrive is running");
+                //telemetry.addLine("Mechanum RobotOreintedDrive is running");
                 break;
             default:
                 telemetry.addLine("ERROR INVALID DRIVE TYPE");

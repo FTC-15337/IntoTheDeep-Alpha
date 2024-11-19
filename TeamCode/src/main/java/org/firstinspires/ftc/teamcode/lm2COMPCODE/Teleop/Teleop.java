@@ -6,6 +6,7 @@ import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad1Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad2Controls;
-
+@TeleOp(name="lm2TELEOP")
 public class Teleop extends LinearOpMode {
     //driver1 vars
     public Drive driver = new Drive();
@@ -71,8 +72,8 @@ public class Teleop extends LinearOpMode {
         gamepad2Thread.init(this);
         gampad1Thread.add2Controls();
         waitForStart();
-        gampad1Thread.run();
-        gamepad2Thread.run();
+        gampad1Thread.start();
+        gamepad2Thread.start();
         while(!isStopRequested()){
 
         }

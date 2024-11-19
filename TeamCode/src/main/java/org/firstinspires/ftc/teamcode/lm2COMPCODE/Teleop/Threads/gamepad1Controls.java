@@ -59,6 +59,7 @@ public class gamepad1Controls extends Thread{
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
             mainFile.telemetry.addLine(String.valueOf(e));
+            mainFile.gamepad2Thread.start();
         }
     }
 }

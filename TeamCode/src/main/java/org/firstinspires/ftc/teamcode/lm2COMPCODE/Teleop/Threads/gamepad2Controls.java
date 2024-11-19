@@ -106,7 +106,7 @@ public class gamepad2Controls extends Thread{
                 }
 
 
-/*
+
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.5);
@@ -147,9 +147,7 @@ public class gamepad2Controls extends Thread{
                 }else{
 
                 }*/
-
-
-                //clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
+                clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
