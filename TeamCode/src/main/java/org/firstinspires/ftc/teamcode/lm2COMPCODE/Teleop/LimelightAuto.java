@@ -33,13 +33,19 @@ public class LimelightAuto extends LinearOpMode
             limelight.setPollRateHz(100);  // Poll rate for Limelight
             LLResult result = limelight.getLatestResult();
 
+            telemetry.addLine().addData("Where", 1);
+
             if (result != null && result.isValid())
             {
+                telemetry.addLine().addData("Where", 2);
+
                 // Get the horizontal angle (tx) from the Limelight
                 double tx = result.getTx();  // Horizontal angle to the AprilTag (in degrees)
 
                 // Calculate the horizontal distance to the target
                 double horizontalDistance = calculateHorizontalDistance(tx);
+
+                telemetry.addLine().addData("Where", 3);
 
                 // Display the result in the telemetry
                 telemetry.addData("tx (angle)", tx);
