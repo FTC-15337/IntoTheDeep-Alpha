@@ -54,7 +54,7 @@ public class LimelightJavaCode extends LinearOpMode
 
                 if (horizontalDistance > 0.5)
                 {
-                    telemetry.addLine("Less than 0.5 meters away from AprilTag");
+                    telemetry.addLine("Greater than 0.5 meters away from AprilTag");
                 }
             }
 
