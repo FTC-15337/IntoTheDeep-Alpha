@@ -61,13 +61,13 @@ public class gamepad2Controls extends Thread{
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMAX,1);
 
-                    //while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX-10){}
+                    while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX-10){}
 
                     mainFile.safeWaitSeconds(50);
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,1.5);
 
-                    //while (sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX+10){}
+                    while (sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX+10){}
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
@@ -77,7 +77,7 @@ public class gamepad2Controls extends Thread{
                 // The code below is used for bringing everything to it's original position:
                 while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
                 {
-                    //mainFile.safeWaitSeconds(50);
+                    mainFile.safeWaitSeconds(50);
 
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
 
@@ -89,7 +89,7 @@ public class gamepad2Controls extends Thread{
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,0.5);
 
-                    //while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW-10){}
+                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW-10){}
 
                     mainFile.safeWaitSeconds(50);
 
@@ -99,7 +99,7 @@ public class gamepad2Controls extends Thread{
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
 
-                    //while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
+                    while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
 
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 }
