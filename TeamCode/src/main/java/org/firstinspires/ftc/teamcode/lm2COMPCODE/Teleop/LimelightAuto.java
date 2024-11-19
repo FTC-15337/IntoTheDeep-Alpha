@@ -62,6 +62,9 @@ public class LimelightAuto extends LinearOpMode
         // Formula: distance = (target height - camera height) / tan(tx + camera pitch)
         double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(txRadians + Math.toRadians(CAMERA_PITCH));
         //Returns final distance value
+
+        telemetry.addLine().addData("distance", distance);
+
         return distance;
     }
 }
