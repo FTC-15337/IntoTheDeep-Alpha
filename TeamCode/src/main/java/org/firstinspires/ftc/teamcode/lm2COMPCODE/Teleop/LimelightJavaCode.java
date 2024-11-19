@@ -4,7 +4,7 @@ import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
+import com.parshwa.drive.tele.Drive;
 
 @TeleOp (name = "LimelightJavaCode")
 
@@ -74,6 +74,7 @@ public class LimelightJavaCode extends LinearOpMode
         //Returns final distance value
 
         telemetry.addLine().addData("distance", distance);
+        telemetry.update();
         //Returns and prints the distance
         return distance;
 
