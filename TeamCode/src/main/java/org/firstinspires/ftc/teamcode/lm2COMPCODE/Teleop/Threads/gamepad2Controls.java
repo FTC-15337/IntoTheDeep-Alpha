@@ -91,7 +91,9 @@ public class gamepad2Controls extends Thread{
                     mainFile.safeWaitSeconds(50);
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,1);
+
                     while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW-10){}
+
                     mainFile.safeWaitSeconds(50);
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -99,7 +101,9 @@ public class gamepad2Controls extends Thread{
                     mainFile.safeWaitSeconds(50);
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
+
                     while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
+
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 }
 
