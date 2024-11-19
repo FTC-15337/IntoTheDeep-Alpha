@@ -25,6 +25,7 @@ public class LimelightCodeFinal extends LinearOpMode
         telemetry.setMsTransmissionInterval(11);
         limelight.pipelineSwitch(0);
         limelight.start();
+        limelight.start();
 
         waitForStart();
 
