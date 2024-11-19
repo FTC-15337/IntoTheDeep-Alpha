@@ -52,10 +52,6 @@ public class gamepad2Controls extends Thread{
                     }
                 }
 
-                if(gamepad2.a)
-                {
-                    clawRotateServo.setServoPosition(5);
-                }
                 // The code below is used for raising everything
                 while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
