@@ -58,7 +58,7 @@ public class test extends Thread{
                 {
                     SM.setPos(CONSTANTS.SLIDEROTATEMAX,1);
 
-                    mainFile.safeWaitSeconds(500);
+                    mainFile.safeWaitSeconds(50);
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,1);
 
@@ -70,15 +70,15 @@ public class test extends Thread{
                 // The code below is used for bringing everything to it's original position:
                 while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
                 {
-                    mainFile.safeWaitSeconds(500);
+                    mainFile.safeWaitSeconds(50);
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
 
-                    mainFile.safeWaitSeconds(500);
+                    mainFile.safeWaitSeconds(50);
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,1);
 
-                    mainFile.safeWaitSeconds(500);
+                    mainFile.safeWaitSeconds(50);
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
 
