@@ -1,15 +1,22 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop;
 
+import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.parshwa.drive.tele.Drive;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.IMU;
 
 @TeleOp (name = "LimelightJavaCode")
 
 public class LimelightJavaCode extends LinearOpMode
 {
+    private RevHubOrientationOnRobot orientation;
+    private IMU imu;
 
     private Limelight3A limelight;
 
@@ -17,6 +24,12 @@ public class LimelightJavaCode extends LinearOpMode
     private static final double CAMERA_HEIGHT = 0.2; // Camera height in meters (adjust as needed)
     private static final double TARGET_HEIGHT = 0.13; // Target height in meters (adjust as needed)
     private static final double CAMERA_PITCH = 0; // Camera pitch angle in degrees (adjust as needed)
+    LLResult result = limelight.getLatestResult();
+    double tx = result.getTx();  // Horizontal angle to the AprilTag
+    double ty = result.getTy();// Vertical angle to the AprilTag
+    double ta = result.getTa(); // Tag ID
+    double txRadians = Math.toRadians(tx);
+    double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(txRadians + Math.toRadians(CAMERA_PITCH));
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -28,21 +41,28 @@ public class LimelightJavaCode extends LinearOpMode
         limelight.start();
         limelight.start();
 
+        Drive driver = new Drive();
+        orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
+        imu = hardwareMap.get(IMU.class, "imu");
+        imu.initialize(new IMU.Parameters(orientation));
+        driver.change(imu);
+        driver.change("RFM","RBM","LFM","LBM");
+        driver.change(DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.FORWARD,
+                DcMotorSimple.Direction.REVERSE);
+        driver.init(hardwareMap,telemetry, DriveModes.MecanumFeildOriented);
         waitForStart();
 
         telemetry.addLine("Limelight AprilTag detection has started");
 
         while (opModeIsActive()) {
             limelight.setPollRateHz(100);  // Poll rate for Limelight
-            LLResult result = limelight.getLatestResult();
 
             if (result != null && result.isValid())
             {
 
-                // Get the horizontal angle (tx) from the Limelight
-                double tx = result.getTx();  // Horizontal angle to the AprilTag
-                double ty = result.getTy();// Vertical angle to the AprilTag
-                double ta = result.getTa(); // Tag ID
+                //Get the horizontal angle (tx) from the Limelight
 
                 // Calculate horizontal distance to AprilTag
                 double horizontalDistance = calculateHorizontalDistance(tx);
@@ -53,6 +73,15 @@ public class LimelightJavaCode extends LinearOpMode
                 telemetry.addData("Horizontal Distance To AprilTag", horizontalDistance);
                 telemetry.update(); // Updates Telemetry
 
+                if(distance > 0.3)
+                {
+                    //driver.move(tx , ty , ta); //moves bot by the angles
+
+                }
+                else
+                {
+                    driver.move(0,0,0,0); //stops bot
+                }
                 if (horizontalDistance > 0.5)
                 {
                     telemetry.addLine("Greater than 0.5 meters away from AprilTag");
@@ -70,7 +99,7 @@ public class LimelightJavaCode extends LinearOpMode
 
         // Calculate horizontal distance from the april tag or whatever its detecting
         // Formula: distance = (target height - camera height) / tan(tx + camera pitch)
-        double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(txRadians + Math.toRadians(CAMERA_PITCH));
+
         //Returns final distance value
 
         telemetry.addLine().addData("distance", distance);
