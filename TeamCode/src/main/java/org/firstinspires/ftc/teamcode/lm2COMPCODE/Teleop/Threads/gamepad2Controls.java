@@ -69,7 +69,7 @@ public class gamepad2Controls extends Thread{
 
                     //while (sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX+10){}
 
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
 
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 }
