@@ -39,7 +39,6 @@ public class LimelightJavaCode extends LinearOpMode
         telemetry.setMsTransmissionInterval(11);
         limelight.pipelineSwitch(0);
         limelight.start();
-        limelight.start();
 
         Drive driver = new Drive();
         orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
@@ -68,9 +67,9 @@ public class LimelightJavaCode extends LinearOpMode
                 double horizontalDistance = calculateHorizontalDistance(tx);
 
                 // Display the result
-                telemetry.addData("tx (angle)", tx);
-                telemetry.addData("ty (angle)" , ty);
-                telemetry.addData("Horizontal Distance To AprilTag", horizontalDistance);
+                telemetry.addData("tx (angle): ", tx);
+                telemetry.addData("ty (angle): " , ty);
+                telemetry.addData("Horizontal Distance To AprilTag: ", horizontalDistance);
                 telemetry.update(); // Updates Telemetry
 
                 if(distance > 0.3)
@@ -100,9 +99,9 @@ public class LimelightJavaCode extends LinearOpMode
         // Calculate horizontal distance from the april tag or whatever its detecting
         // Formula: distance = (target height - camera height) / tan(tx + camera pitch)
 
-        //Returns final distance value
+        // Returns final distance value
 
-        telemetry.addLine().addData("distance", distance);
+        telemetry.addLine().addData("Distance: ", distance);
         telemetry.update();
         //Returns and prints the distance
         return distance;
