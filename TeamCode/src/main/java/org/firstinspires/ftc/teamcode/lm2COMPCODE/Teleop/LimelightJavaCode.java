@@ -74,7 +74,7 @@ public class LimelightJavaCode extends LinearOpMode
 
                 if(distance > 0.3)
                 {
-                    //driver.move(tx , ty , ta); //moves bot by the angles
+                    driver.move(tx , ty , ta); //moves bot by the angles
 
                 }
                 else
