@@ -62,7 +62,11 @@ public class test extends Thread{
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,1);
 
+                    mainFile.safeWaitSeconds(50);
+
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+
+                    mainFile.safeWaitSeconds(50);
 
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                 }
