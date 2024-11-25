@@ -9,12 +9,16 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.parshwa.drive.tele.Drive;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp (name = "LimelightJavaCode")
 
-public class LimelightJavaCode extends LinearOpMode
+public class LimelightJavaCode
 {
+    private Telemetry telemetry;
     private RevHubOrientationOnRobot orientation;
     private IMU imu;
 
@@ -31,8 +35,7 @@ public class LimelightJavaCode extends LinearOpMode
     double txRadians = Math.toRadians(tx);
     double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(txRadians + Math.toRadians(CAMERA_PITCH));
 
-    @Override
-    public void runOpMode() throws InterruptedException
+    public void INIT(HardwareMap hardwareMap, Telemetry telemetry, Drive driver) throws InterruptedException
     {
 
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
@@ -40,22 +43,10 @@ public class LimelightJavaCode extends LinearOpMode
         limelight.pipelineSwitch(0);
         limelight.start();
 
-        Drive driver = new Drive();
-        orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
-        imu = hardwareMap.get(IMU.class, "imu");
-        imu.initialize(new IMU.Parameters(orientation));
-        driver.change(imu);
-        driver.change("RFM","RBM","LFM","LBM");
-        driver.change(DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap,telemetry, DriveModes.MecanumFeildOriented);
-        waitForStart();
 
         telemetry.addLine("Limelight AprilTag detection has started");
 
-        while (opModeIsActive()) {
+        while (limelight.isRunning()) {
             limelight.setPollRateHz(100);  // Poll rate for Limelight
 
             if (result != null && result.isValid())
