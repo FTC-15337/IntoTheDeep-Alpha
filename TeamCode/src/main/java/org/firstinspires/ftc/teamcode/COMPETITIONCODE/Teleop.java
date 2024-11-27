@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
 import java.io.File;
 
-@TeleOp(name = "teleop")
+@TeleOp(name = "LM1teleop")
 public class Teleop extends LinearOpMode {
     private servoManger clawServo = new servoManger();
     private servoManger clawRotateServo = new servoManger();

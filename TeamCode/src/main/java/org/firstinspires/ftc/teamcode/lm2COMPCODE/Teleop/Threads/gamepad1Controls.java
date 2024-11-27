@@ -28,6 +28,7 @@ public class gamepad1Controls extends Thread{
     }
     public void run(){
         try{
+            while(!mainFile.isStarted()){}
             while(running && !mainFile.isStopRequested()){
                 SPED = gamepad1.right_trigger;
                 if(gamepad1.right_bumper){

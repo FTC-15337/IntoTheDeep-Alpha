@@ -3,11 +3,13 @@ package com.parshwa.drive.auto;
 import static com.parshwa.drive.auto.Types.*;
 
 import com.parshwa.drive.tele.Drive;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.auto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class AutoDriverBetaV1 implements AutoDriverInterface {
     private ArrayList typeIds = new ArrayList();
     private ArrayList startPos = new ArrayList();
     private boolean stay = false;
+    private auto mainFile;
     @Override
     public void init(HardwareMap hwMP, Drive movementController) {
         this.odoComp = hwMP.get(GoBildaPinpointDriver.class,"odo");
@@ -28,7 +31,9 @@ public class AutoDriverBetaV1 implements AutoDriverInterface {
         odoComp.resetPosAndIMU();
         this.movementControler = movementController;
     }
-
+    public void enableTurn(auto main){
+        this.mainFile = main;
+    }
     @Override
     public Pose2D getPosition() {
         odoComp.update();
@@ -216,5 +221,41 @@ public class AutoDriverBetaV1 implements AutoDriverInterface {
 
     public GoBildaPinpointDriver getOdo() {
         return odoComp;
+    }
+    public void turnAngle(double turnAngle) {
+        double error, currentHeadingAngle, driveMotorsPower;
+        DcMotor frontLeftMotor = movementControler.getFrontLeftMotor();
+        DcMotor backLeftMotor = movementControler.getBackLeftMotor();
+        DcMotor frontRightMotor = movementControler.getFrontRightMotor();
+        DcMotor backRightMotor = movementControler.getBackRightMotor();
+        error = turnAngle - Math.toDegrees(odoComp.getHeading());
+        while (mainFile.opModeIsActive() && ((error > 0.5) || (error < -0.5))) {
+            odoComp.update();
+            mainFile.telemetry.addData("X: ", odoComp.getPosX());
+            mainFile.telemetry.addData("Y: ", odoComp.getPosY());
+            mainFile.telemetry.addData("Heading Odo: ", Math.toDegrees(odoComp.getHeading()));
+            mainFile.telemetry.update();
+
+            driveMotorsPower = error / 200;
+
+            if ((driveMotorsPower < 0.2) && (driveMotorsPower > 0)) {
+                driveMotorsPower = 0.2;
+            } else if ((driveMotorsPower > -0.2) && (driveMotorsPower < 0)) {
+                driveMotorsPower = -0.2;
+            }
+
+            // Positive power causes left turn
+            frontLeftMotor.setPower(-driveMotorsPower);
+            backLeftMotor.setPower(-driveMotorsPower);
+            frontRightMotor.setPower(driveMotorsPower);
+            backRightMotor.setPower(driveMotorsPower);
+
+            currentHeadingAngle = Math.toDegrees(odoComp.getHeading());
+            error = turnAngle - currentHeadingAngle;
+        }
+        frontLeftMotor.setPower(0);
+        backLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        backRightMotor.setPower(0);
     }
 }

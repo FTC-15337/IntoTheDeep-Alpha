@@ -39,20 +39,21 @@ public class gamepad2Controls extends Thread{
                 bypassEnabled = gamepad2.back;
                 resetEnabled = gamepad2.start;
                 if(sc.getCurrentPosition() < -20 && sr.getCurrentPosition() > 600) {
-                    SM.move(-gamepad2.left_stick_y - 0.01 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y - 0.01);
+                    // when slider is at 90 degree and expanded then it gets small bit of power to stay up
+                    SM.move(-gamepad2.left_stick_y - 0.05 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y - 0.05);
                 }else{
-                    if(sc.getCurrentPosition() > -1100) {
-                        SM.move(-gamepad2.left_stick_y);
-                    }else{
-                        if(-gamepad2.left_stick_y > 0.0) {
-                            SM.move(1.0);
-                        }else{
-                            SM.move(0.0);
-                        }
-                    }
+                    SM.move(-gamepad2.left_stick_y);
                 }
-
+                /*if(gamepad2.left_trigger > 0.1){
+                    SM.setPos2(180 , 1);
+                }
+                if(gamepad2.right_trigger > 0.1){
+                    SM.setPos2(0 , -1);
+                }*/
+                //SM.move(-gamepad2.left_stick_y);
+                mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
                 // The code below is used for raising everything
+                // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
                 while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
@@ -61,23 +62,23 @@ public class gamepad2Controls extends Thread{
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMAX,1);
 
-                    //while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX-10){}
+                    while (sr.getCurrentPosition() < CONSTANTS.SLIDEROTATEMAX-10){}
 
                     mainFile.safeWaitSeconds(50);
 
-                    SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,1.5);
+                    SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,-1);
 
-                    //while (sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX+10){}
+                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX-10){}
 
-                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 }
-
+                // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
                 // The code below is used for bringing everything to it's original position:
                 while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
                 {
-                    mainFile.safeWaitSeconds(50);
+                    //mainFile.safeWaitSeconds(50);
 
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
 
@@ -87,9 +88,9 @@ public class gamepad2Controls extends Thread{
 
                     mainFile.safeWaitSeconds(50);
 
-                    SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,0.5);
+                    SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,1);
 
-                    //while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW-10){}
+                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW+10){}
 
                     mainFile.safeWaitSeconds(50);
 
@@ -99,10 +100,10 @@ public class gamepad2Controls extends Thread{
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
 
-                    //while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
+                    while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
 
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                }
+                } // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
 
 
 
@@ -135,7 +136,7 @@ public class gamepad2Controls extends Thread{
                 if(gamepad2.left_bumper){
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                 }
-                /*(if(gamepad2.dpad_left){
+                if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.8);
                 }else if(gamepad2.dpad_right){
                     clawRotateServo2.setServoPosition(0.3);
@@ -144,9 +145,9 @@ public class gamepad2Controls extends Thread{
                 }else if(gamepad2.dpad_down){
                     clawRotateServo2.setServoPosition(0.9);
                 }else{
+                    clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
+                }
 
-                }*/
-                clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");

@@ -24,12 +24,12 @@ public class LimelightJavaCode extends LinearOpMode
     private static final double CAMERA_HEIGHT = 0.2; // Camera height in meters (adjust as needed)
     private static final double TARGET_HEIGHT = 0.13; // Target height in meters (adjust as needed)
     private static final double CAMERA_PITCH = 0; // Camera pitch angle in degrees (adjust as needed)
-    LLResult result = limelight.getLatestResult();
-    double tx = result.getTx();  // Horizontal angle to the AprilTag
-    double ty = result.getTy();// Vertical angle to the AprilTag
-    double ta = result.getTa(); // Tag ID
-    double txRadians = Math.toRadians(tx);
-    double distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(txRadians + Math.toRadians(CAMERA_PITCH));
+    LLResult result ;
+    double tx;  // Horizontal angle to the AprilTag
+    double ty;// Vertical angle to the AprilTag
+    double ta; // Tag ID
+    double txRadians;
+    double distance;
 
     @Override
     public void runOpMode() throws InterruptedException
@@ -54,6 +54,7 @@ public class LimelightJavaCode extends LinearOpMode
         waitForStart();
 
         telemetry.addLine("Limelight AprilTag detection has started");
+        telemetry.update();
 
         while (opModeIsActive()) {
             limelight.setPollRateHz(100);  // Poll rate for Limelight
@@ -62,7 +63,7 @@ public class LimelightJavaCode extends LinearOpMode
             {
 
                 //Get the horizontal angle (tx) from the Limelight
-
+                tx = result.getTx();
                 // Calculate horizontal distance to AprilTag
                 double horizontalDistance = calculateHorizontalDistance(tx);
 
@@ -74,7 +75,7 @@ public class LimelightJavaCode extends LinearOpMode
 
                 if(distance > 0.3)
                 {
-                    driver.move(tx , ty , ta); //moves bot by the angles
+                    //driver.move(tx , ty , ta); //moves bot by the angles
 
                 }
                 else

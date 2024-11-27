@@ -167,7 +167,7 @@ public class Drive implements DriveInterface {
                 telemetry.addLine("Send me a discord message at parshwa_fun if this is a drive mode type");
                 break;
         }
-        telemetry.update();
+        //telemetry.update();
     }
 
     @Override
