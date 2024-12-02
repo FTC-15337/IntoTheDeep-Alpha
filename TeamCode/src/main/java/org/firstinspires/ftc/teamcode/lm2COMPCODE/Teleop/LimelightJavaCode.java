@@ -70,7 +70,7 @@ public class LimelightJavaCode extends LinearOpMode
                 double horizontalDistance = calculateHorizontalDistance(tx);
 
                 // Display the result
-                telemetry.addData("tx (angle): ", tx);
+                telemetry.addData("tx (angle): " , tx);
                 telemetry.addData("ty (angle): " , ty);
                 telemetry.addData("Horizontal Distance To AprilTag: ", horizontalDistance);
                 telemetry.update(); // Updates Telemetry
