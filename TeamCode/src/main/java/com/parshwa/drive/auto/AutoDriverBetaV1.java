@@ -9,19 +9,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.auto;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.LeftAuto;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AutoDriverBetaV1 implements AutoDriverInterface {
-    private GoBildaPinpointDriver odoComp;
+    public GoBildaPinpointDriver odoComp;
     private Drive movementControler;
     private ArrayList movementIds = new ArrayList();
     private ArrayList typeIds = new ArrayList();
     private ArrayList startPos = new ArrayList();
     private boolean stay = false;
-    private auto mainFile;
+    private LeftAuto mainFile;
     @Override
     public void init(HardwareMap hwMP, Drive movementController) {
         this.odoComp = hwMP.get(GoBildaPinpointDriver.class,"odo");
@@ -31,7 +31,7 @@ public class AutoDriverBetaV1 implements AutoDriverInterface {
         odoComp.resetPosAndIMU();
         this.movementControler = movementController;
     }
-    public void enableTurn(auto main){
+    public void enableTurn(LeftAuto main){
         this.mainFile = main;
     }
     @Override

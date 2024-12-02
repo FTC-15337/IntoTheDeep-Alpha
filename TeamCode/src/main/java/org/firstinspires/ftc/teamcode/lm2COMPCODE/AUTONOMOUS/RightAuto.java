@@ -14,14 +14,13 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.CONSTANTS;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.lights;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
-@Autonomous(name="LM2 LEFT AUTO")
-public class auto extends LinearOpMode {
-    public lights lighting = new lights();
+@Autonomous(name="LM2 RIGHT AUTO")
+public class RightAuto extends LinearOpMode {
+    public Lights lighting = new Lights();
     public Servo bottomLed;
 
     private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
@@ -36,9 +35,6 @@ public class auto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        bottomLed = hardwareMap.get(Servo.class, "RGBLED");
-        lighting.init2(this);
-        lighting.start();
 
         clawServo.init(hardwareMap, "cs");
         clawRotateServo.init(hardwareMap, "crs");
@@ -62,10 +58,9 @@ public class auto extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE);
         driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
         autoDriver.init(hardwareMap,driver);
-        autoDriver.enableTurn(this);
 
         //POSITIONS
-        int DropPos  = autoDriver.lineTo(-300,400,1.0);
+        int DropPos  = autoDriver.lineTo(300,0,1.0);
         int pickup1  = autoDriver.lineTo(-100,100,1.0);
         int DropPos2 = autoDriver.lineTo(-100,100,1.0);
         int pickup2  = autoDriver.lineTo(-100,100,1.0);
@@ -83,7 +78,6 @@ public class auto extends LinearOpMode {
         while(!completed && !isStopRequested()){
             completed = autoDriver.move(DropPos);
         }
-        autoDriver.turnAngle(-45);
         completed = false;
         while(!completed && !isStopRequested()){
             SM.setPos(CONSTANTS.SLIDEROTATEMAX, 1);
@@ -110,5 +104,41 @@ public class auto extends LinearOpMode {
         timer.reset();
         while (!isStopRequested() && timer.time() < time) {
         }
+    }
+    public void turnAngle(double turnAngle) {
+        double error, currentHeadingAngle, driveMotorsPower;
+        DcMotor frontLeftMotor = driver.getFrontLeftMotor();
+        DcMotor backLeftMotor = driver.getBackLeftMotor();
+        DcMotor frontRightMotor = driver.getFrontRightMotor();
+        DcMotor backRightMotor = driver.getBackRightMotor();
+        error = turnAngle - Math.toDegrees(autoDriver.odoComp.getHeading());
+        while (opModeIsActive() && ((error > 0.5) || (error < -0.5))) {
+            autoDriver.odoComp.update();
+            telemetry.addData("X: ", autoDriver.odoComp.getPosX());
+            telemetry.addData("Y: ", autoDriver.odoComp.getPosY());
+            telemetry.addData("Heading Odo: ", Math.toDegrees(autoDriver.odoComp.getHeading()));
+            telemetry.update();
+
+            driveMotorsPower = error / 200;
+
+            if ((driveMotorsPower < 0.2) && (driveMotorsPower > 0)) {
+                driveMotorsPower = 0.2;
+            } else if ((driveMotorsPower > -0.2) && (driveMotorsPower < 0)) {
+                driveMotorsPower = -0.2;
+            }
+
+            // Positive power causes left turn
+            frontLeftMotor.setPower(-driveMotorsPower);
+            backLeftMotor.setPower(-driveMotorsPower);
+            frontRightMotor.setPower(driveMotorsPower);
+            backRightMotor.setPower(driveMotorsPower);
+
+            currentHeadingAngle = Math.toDegrees(autoDriver.odoComp.getHeading());
+            error = turnAngle - currentHeadingAngle;
+        }
+        frontLeftMotor.setPower(0);
+        backLeftMotor.setPower(0);
+        frontRightMotor.setPower(0);
+        backRightMotor.setPower(0);
     }
 }

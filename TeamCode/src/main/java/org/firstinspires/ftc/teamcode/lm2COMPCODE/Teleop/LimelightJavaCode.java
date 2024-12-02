@@ -57,9 +57,11 @@ public class LimelightJavaCode extends LinearOpMode
         telemetry.update();
 
         while (opModeIsActive()) {
-            limelight.setPollRateHz(100);  // Poll rate for Limelight
+            limelight.setPollRateHz(100); // Poll rate for Limelight
 
-            if (result != null && result.isValid())
+            result = limelight.getLatestResult();
+
+            if (result != null && result.isValid() || true)
             {
 
                 //Get the horizontal angle (tx) from the Limelight
@@ -99,11 +101,10 @@ public class LimelightJavaCode extends LinearOpMode
 
         // Calculate horizontal distance from the april tag or whatever its detecting
         // Formula: distance = (target height - camera height) / tan(tx + camera pitch)
-
+        distance = (TARGET_HEIGHT - CAMERA_HEIGHT) / Math.tan(tx);
         // Returns final distance value
 
         telemetry.addLine().addData("Distance: ", distance);
-        telemetry.update();
         //Returns and prints the distance
         return distance;
 

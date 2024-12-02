@@ -1,16 +1,19 @@
-package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
+package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads;
 
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.AutoTestTeleop;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.LeftAuto;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.RightAuto;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Teleop;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.TestAuto;
 
-public class lights extends Thread{
-    private Teleop mainFile;
+public class Lights extends Thread{
+    private AutoTestTeleop mainFile;
     private LeftAuto mainFile2;
     private RightAuto mainFile3;
+    private TestAuto mainFile4;
     private boolean which;
     private boolean which2;
-    public void init(Teleop main){
+    private boolean which4;
+    public void init(AutoTestTeleop main){
         mainFile = main;
         which = true;
         which2 = false;
@@ -19,6 +22,13 @@ public class lights extends Thread{
         mainFile2 = main;
         which = false;
         which2 = false;
+    }
+
+    public void init4(TestAuto main){
+        mainFile4 = main;
+        which = false;
+        which2 = false;
+        which4= true;
     }
     public void init3(RightAuto main){
         mainFile3 = main;

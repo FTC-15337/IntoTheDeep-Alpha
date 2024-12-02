@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.CONSTANTS;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Teleop;

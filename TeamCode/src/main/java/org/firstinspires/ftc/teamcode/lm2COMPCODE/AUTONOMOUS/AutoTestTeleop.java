@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop;
+package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 
@@ -15,18 +15,19 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.lights;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad1Controls;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad2Controls;
-@TeleOp(name="teleop")
-public class Teleop extends LinearOpMode {
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Gamepad1Controls;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Gamepad2Controls;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
+
+@TeleOp(name="AutoTestTeleop")
+public class AutoTestTeleop extends LinearOpMode {
     //driver1 vars
     public Drive driver = new Drive();
     private double SPED = 0;
     public IMU imu;
-    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(CONSTANTS.logoDirection,CONSTANTS.usDirection);
+    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.logoDirection, CONSTANTS.usDirection);
 
     //driver2 vars
     public SliderManger SM = new SliderManger();
@@ -36,9 +37,9 @@ public class Teleop extends LinearOpMode {
     public servoManger clawRotateServo2 = new servoManger();
 
     //Thread vars
-    public gamepad1Controls gampad1Thread = new gamepad1Controls();
-    public gamepad2Controls gamepad2Thread = new gamepad2Controls();
-    public lights lighting = new lights();
+    public Gamepad1Controls gampad1Thread = new Gamepad1Controls();
+    public Gamepad2Controls gamepad2Thread = new Gamepad2Controls();
+    public Lights lighting = new Lights();
 
     //LEDS
     public Servo bottomLed;
