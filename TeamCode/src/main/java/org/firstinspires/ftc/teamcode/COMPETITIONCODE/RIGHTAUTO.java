@@ -52,9 +52,6 @@ public class RIGHTAUTO extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE);
         driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
         autoDriver.init(hardwareMap,driver);
-        //TODO: GET REAL VALUES
-        //TODO: SET UP MULTIAUTOMODE
-        //TODO: SET UP ROTATIONS
         //IMPORTANT: DO THE TODOS
         int parkPos = autoDriver.lineTo(0.0,-1000.0,1.0);
         telemetry.addLine("initilized");

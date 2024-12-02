@@ -54,9 +54,6 @@ public class LeftAutoRotation extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE);
         driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
         autoDriver.init(hardwareMap,driver);
-        //TODO: GET REAL VALUES
-        //TODO: SET UP MULTIAUTOMODE
-        //TODO: SET UP ROTATIONS
         //IMPORTANT: DO THE TODOS
         int dropSample1 = autoDriver.lineTo(-410.0,1120.0,1.0);
         int pickupSample2mid = autoDriver.lineTo(-600.0,1025.0,1.0);

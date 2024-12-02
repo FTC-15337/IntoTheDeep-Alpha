@@ -58,9 +58,6 @@ public class LEFTAUTO extends LinearOpMode {
                 DcMotorSimple.Direction.REVERSE);
         driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
         autoDriver.init(hardwareMap,driver);
-        //TODO: GET REAL VALUES
-        //TODO: SET UP MULTIAUTOMODE
-        //TODO: SET UP ROTATIONS
         //IMPORTANT: DO THE TODOS
         int dropSample1 = autoDriver.lineTo(-314.0,1109.0,1.0);
         int pickupSample2mid = autoDriver.lineTo(-580.0,1045.0,1.0);
