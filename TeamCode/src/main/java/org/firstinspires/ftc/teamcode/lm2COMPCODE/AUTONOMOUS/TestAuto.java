@@ -166,7 +166,7 @@ public class TestAuto extends LinearOpMode {
         }
         //ensure slider stays at 90
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sr.setPower(0.01); // TODO: increase if it does not hold at 90
+        sr.setPower(0.1); // TODO: increase if it does not hold at 90
     }
 
     private void expandSliderToTopBasket() {
@@ -179,7 +179,7 @@ public class TestAuto extends LinearOpMode {
             completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.05);// TODO: increase if it does not hold slider at max expansion.
+        sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
     }
 
     private void retractSlider() {
@@ -187,9 +187,11 @@ public class TestAuto extends LinearOpMode {
         sc.setPower(0.0); // reset slider power to zero
         double currentTargetPos = sc.getTargetPosition();
         double currentPos = sc.getCurrentPosition();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(-1);
         while(!completed && !isStopRequested()){
-            SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
-            sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
@@ -204,6 +206,7 @@ public class TestAuto extends LinearOpMode {
         telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.0); // reset slider power to zero
 
     }

@@ -87,11 +87,11 @@ public class LeftAuto2 extends LeftAuto {
 
         // wait to finish
         safeWaitSeconds(500);
-        autoDriver.turnAngle(0);
+        autoDriver.turnAngle(-20);
         // try same thing second time
 
-        autoDriver.turnAngle(-45);
-        dropSampleToHighBasket();
+        //autoDriver.turnAngle(-45);
+        //dropSampleToHighBasket();
 
 
         while(!isStopRequested()){
@@ -102,7 +102,6 @@ public class LeftAuto2 extends LeftAuto {
 
     private void dropSampleToHighBasket() {
         rotateSliderTo90DegreeAngle();
-        safeWaitSeconds(500);
         // set claw rotation to be parallel to slider
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         // wait to finish
@@ -180,7 +179,7 @@ public class LeftAuto2 extends LeftAuto {
             completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.05);// TODO: increase if it does not hold slider at max expansion.
+        sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
     }
 
     private void retractSlider() {
@@ -188,9 +187,11 @@ public class LeftAuto2 extends LeftAuto {
         sc.setPower(0.0); // reset slider power to zero
         double currentTargetPos = sc.getTargetPosition();
         double currentPos = sc.getCurrentPosition();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(-1);
         while(!completed && !isStopRequested()){
-            SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
-            sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
@@ -205,6 +206,7 @@ public class LeftAuto2 extends LeftAuto {
         telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.0); // reset slider power to zero
 
     }

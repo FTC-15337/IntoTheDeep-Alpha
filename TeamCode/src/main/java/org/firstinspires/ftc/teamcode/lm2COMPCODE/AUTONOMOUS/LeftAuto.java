@@ -171,7 +171,7 @@ public class LeftAuto extends LinearOpMode {
         }
         //ensure slider stays at 90
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sr.setPower(0.01); // TODO: increase if it does not hold at 90
+        sr.setPower(0.1); // TODO: increase if it does not hold at 90
     }
 
     private void expandSliderToTopBasket() {
@@ -184,7 +184,7 @@ public class LeftAuto extends LinearOpMode {
             completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.05);// TODO: increase if it does not hold slider at max expansion.
+        sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
     }
 
     private void retractSlider() {
