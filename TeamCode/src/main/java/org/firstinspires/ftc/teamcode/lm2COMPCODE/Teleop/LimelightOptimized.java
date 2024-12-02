@@ -23,7 +23,7 @@ public class LimelightOptimized extends LinearOpMode {
     private Drive driver;
 
     @Override
-    public void runOpMode() throws InterruptedException { 
+    public void runOpMode() throws InterruptedException {
 
         // Initialize hardware
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
