@@ -5,6 +5,7 @@ import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -17,8 +18,8 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
 import java.util.Locale;
-
-@Autonomous(name = "right auto", preselectTeleOp = "teleop")
+@Disabled
+@Autonomous(name = "disabled", preselectTeleOp = "teleop")
 public class RIGHTAUTO extends LinearOpMode {
     private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
     private Drive driver = new Drive();

@@ -6,6 +6,7 @@ import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.hardware.rev.RevTouchSensor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -19,8 +20,8 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
 import java.io.File;
-
-@TeleOp(name = "LM1teleop")
+@Disabled
+@TeleOp(name = "disabled")
 public class Teleop extends LinearOpMode {
     private servoManger clawServo = new servoManger();
     private servoManger clawRotateServo = new servoManger();

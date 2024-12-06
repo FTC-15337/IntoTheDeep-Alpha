@@ -18,6 +18,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Gamepad1Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Gamepad2Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.test;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
@@ -70,6 +71,9 @@ public class AutoTestTeleop extends LinearOpMode {
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setDirection(DcMotorSimple.Direction.FORWARD);
 
+        test testing = new test();
+        testing.init(this);
+
         SM.init(sc,sr);
 
         //LEDS
@@ -119,15 +123,15 @@ public class AutoTestTeleop extends LinearOpMode {
         // Rotate claw to drop angle
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         // wait until claw is positioned on the top basket drop position
-        safeWaitSeconds(500);
+        safeWaitSeconds(1000);
         // Open the claw
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         // wait until claw drops sample
-        safeWaitSeconds(500);
+        safeWaitSeconds(1000);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
         // wait until claw rotation is completed
-        safeWaitSeconds(500);
+        safeWaitSeconds(1000);
         // set claw to closed position
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
     }

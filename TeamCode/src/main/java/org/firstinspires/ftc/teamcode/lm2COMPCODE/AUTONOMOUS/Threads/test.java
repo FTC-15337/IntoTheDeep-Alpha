@@ -29,8 +29,6 @@ public class test extends Thread{
             public void getFrameBitmap(Continuation<? extends Consumer<Bitmap>> continuation) {
                 server = CameraStreamServerBetter.getInstance();
                 Picture pic = new Picture();
-                pic.getWidth();
-                pic.getHeight();
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     server.send(Bitmap.createBitmap(pic));
                 }

@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
-@Autonomous(name="LM2 LEFT AUTO")
+@Autonomous(name="left auto")
 public class LeftAuto extends LinearOpMode {
     public Lights lighting = new Lights();
     public Servo bottomLed;
@@ -65,7 +65,7 @@ public class LeftAuto extends LinearOpMode {
 
         //POSITIONS
         int DropPos  = autoDriver.lineTo(-300,400,1.0);
-        int pickup1  = autoDriver.lineTo(-100,100,1.0);
+        int pickup1  = autoDriver.lineTo(-750,220,1.0);
         int DropPos2 = autoDriver.lineTo(-100,100,1.0);
         int pickup2  = autoDriver.lineTo(-100,100,1.0);
         int DropPos3 = autoDriver.lineTo(-100,100,1.0);
@@ -83,29 +83,32 @@ public class LeftAuto extends LinearOpMode {
             completed = autoDriver.move(DropPos);
         }
         autoDriver.turnAngle(-45);
-        completed = false;
-        while(!completed && !isStopRequested()){
-            SM.setPos(CONSTANTS.SLIDEROTATEMAX, 1);
-            completed = sr.getCurrentPosition() < CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10;
-        }
-        sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sr.setPower(0.1);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
-        safeWaitSeconds(100);
-        completed = false;
-        while(!completed && !isStopRequested()){
-            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX, 1);
-            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX - 10 && sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
-        }
-        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.2);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        dropSampleToHighBasket();
+
+        // wait to finish
         safeWaitSeconds(500);
-        while(!isStopRequested()){}
+        autoDriver.turnAngle(0);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        safeWaitSeconds(500);
+        completed = false;
+        while(!completed && !isStopRequested()){
+            completed = autoDriver.move(pickup1);
+        }
+
+        // try same thing second time
+
+        //autoDriver.turnAngle(-45);
+        //dropSampleToHighBasket();
+
+
+        while(!isStopRequested()){
+            telemetry.addLine("DONE");
+            telemetry.update();
+        }
     }
 
-    private void dropSampleToHighBasket() {
+    public void dropSampleToHighBasket() {
         rotateSliderTo90DegreeAngle();
         // set claw rotation to be parallel to slider
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -120,7 +123,6 @@ public class LeftAuto extends LinearOpMode {
         // rotate slider to down position
         rotateSliderToDownPosition();
     }
-
     private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
@@ -131,7 +133,7 @@ public class LeftAuto extends LinearOpMode {
         // wait until claw drops sample
         safeWaitSeconds(500);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
         // wait until claw rotation is completed
         safeWaitSeconds(500);
         // set claw to closed position
@@ -181,10 +183,10 @@ public class LeftAuto extends LinearOpMode {
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
+            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
+        sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
     }
 
     private void retractSlider() {
@@ -192,16 +194,18 @@ public class LeftAuto extends LinearOpMode {
         sc.setPower(0.0); // reset slider power to zero
         double currentTargetPos = sc.getTargetPosition();
         double currentPos = sc.getCurrentPosition();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(1);
         while(!completed && !isStopRequested()){
-            SM.setPos2(-CONSTANTS.SLIDEEXPANSTIONLOW, -1);
-            sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
             telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANSTIONLOW - 50;
+            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONLOW - 10;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
@@ -209,6 +213,7 @@ public class LeftAuto extends LinearOpMode {
         telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.0); // reset slider power to zero
 
     }
