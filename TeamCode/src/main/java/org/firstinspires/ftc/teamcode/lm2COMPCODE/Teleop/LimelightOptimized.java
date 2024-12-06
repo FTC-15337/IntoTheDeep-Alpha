@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 @Autonomous(name = "LimelightJavaCode")
 public class LimelightOptimized extends LinearOpMode {
 
-    private static final double CAMERA_HEIGHT = 0.2; // Camera height in meters
+    private static final double CAMERA_HEIGHT = 0.17; // Camera height in meters
     private static final double TARGET_HEIGHT = 0.13; // Target height in meters
     private static final double CAMERA_PITCH_RADIANS = Math.toRadians(0); // Precomputed pitch angle
 
@@ -41,7 +41,7 @@ public class LimelightOptimized extends LinearOpMode {
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE
+                DcMotorSimple.Direction.FORWARD
         );
         driver.init(hardwareMap, telemetry, DriveModes.MecanumFeildOriented);
 
