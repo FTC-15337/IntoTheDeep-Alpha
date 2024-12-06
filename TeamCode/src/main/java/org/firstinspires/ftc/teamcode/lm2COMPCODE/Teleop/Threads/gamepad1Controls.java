@@ -38,17 +38,17 @@ public class gamepad1Controls extends Thread{
                 resetEnabled = gamepad1.start;
                 if(resetEnabled && controller2.resetEnabled){
                     led.setPosition(0.28);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.0);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.28);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.0);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.28);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.0);
-                    mainFile.safeWaitSeconds(100);
+                    mainFile.safeWaitMilliseconds(100);
                     mainFile.reset();
                 }else if(bypassEnabled && controller2.bypassEnabled){
                     controller2.sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

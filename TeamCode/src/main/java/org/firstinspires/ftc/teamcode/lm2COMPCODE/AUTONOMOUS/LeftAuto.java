@@ -193,20 +193,20 @@ public class LeftAuto extends LinearOpMode {
         double currentTargetPos = sc.getTargetPosition();
         double currentPos = sc.getCurrentPosition();
         while(!completed && !isStopRequested()){
-            SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            SM.setPos2(-CONSTANTS.SLIDEEXPANSTIONLOW, -1);
             sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANTIONLOW - 50;
+            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANSTIONLOW - 50;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
         sc.setPower(0.0); // reset slider power to zero

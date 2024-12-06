@@ -91,7 +91,7 @@ public class Teleop extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         imu.resetYaw();
     }
-    public void safeWaitSeconds(double time) {
+    public void safeWaitMilliseconds(double time) {
         ElapsedTime timer = new ElapsedTime(MILLISECONDS);
         timer.reset();
         while (!isStopRequested() && timer.time() < time) {

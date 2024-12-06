@@ -84,15 +84,10 @@ public class TestAuto extends LinearOpMode {
         }
         autoDriver.turnAngle(-45);
         completed = false;*/
-
-        dropSampleToHighBasket();
-
-        // wait to finish
-        safeWaitSeconds(500);
-
-        // try same thing second time
-        dropSampleToHighBasket();
-
+        while(!completed && !isStopRequested()){
+            SM.setPos2(-100, -1);
+            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX - 10 && sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
+        }
 
         while(!isStopRequested()){
             telemetry.addLine("DONE");
@@ -176,7 +171,7 @@ public class TestAuto extends LinearOpMode {
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
+            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -195,15 +190,15 @@ public class TestAuto extends LinearOpMode {
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANTIONLOW - 50;
+            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANSTIONLOW - 50;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

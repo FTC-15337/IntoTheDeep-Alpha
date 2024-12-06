@@ -7,7 +7,6 @@ import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
@@ -176,7 +175,7 @@ public class LeftAuto2 extends LeftAuto {
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < -CONSTANTS.SLIDEEXPANSTIONMAX + 100;
+            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX + 100 ;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -195,15 +194,15 @@ public class LeftAuto2 extends LeftAuto {
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANTIONLOW - 50;
+            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANSTIONLOW - 50;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW  );
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

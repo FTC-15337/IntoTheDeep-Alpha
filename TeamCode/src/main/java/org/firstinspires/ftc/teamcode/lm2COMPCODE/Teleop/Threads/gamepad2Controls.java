@@ -44,13 +44,6 @@ public class gamepad2Controls extends Thread{
                 }else{
                     SM.move(-gamepad2.left_stick_y);
                 }
-                /*if(gamepad2.left_trigger > 0.1){
-                    SM.setPos2(180 , 1);
-                }
-                if(gamepad2.right_trigger > 0.1){
-                    SM.setPos2(0 , -1);
-                }*/
-                //SM.move(-gamepad2.left_stick_y);
                 mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
                 // The code below is used for raising everything
                 // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
@@ -58,7 +51,7 @@ public class gamepad2Controls extends Thread{
                 {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
 
-                    mainFile.safeWaitSeconds(50);
+                    mainFile.safeWaitMilliseconds(50);
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMAX,1);
                     while(!mainFile.isStopRequested() && !(Math.abs(CONSTANTS.SLIDEROTATEMAX-sr.getCurrentPosition()) <= 10)){}

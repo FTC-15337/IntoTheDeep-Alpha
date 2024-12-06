@@ -65,8 +65,10 @@ public class AutoTestTeleop extends LinearOpMode {
         sr = hardwareMap.dcMotor.get("sr");
         sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setDirection(DcMotorSimple.Direction.FORWARD);
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sr.setDirection(DcMotorSimple.Direction.FORWARD);
 
         SM.init(sc,sr);
 
@@ -97,5 +99,114 @@ public class AutoTestTeleop extends LinearOpMode {
         timer.reset();
         while (!isStopRequested() && timer.time() < time) {
         }
+    }
+    public void dropSampleToHighBasket() {
+        rotateSliderTo90DegreeAngle();
+        // set claw rotation to be parallel to slider
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        // wait to finish
+        safeWaitSeconds(100);
+        // expand slider to maximum
+        expandSliderToTopBasket();
+        // drop the sample
+        dropSampleActionsForClaw();
+        // retract the slider back
+        retractSlider();
+        // rotate slider to down position
+        rotateSliderToDownPosition();
+    }
+    private void dropSampleActionsForClaw() {
+        // Rotate claw to drop angle
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        // wait until claw is positioned on the top basket drop position
+        safeWaitSeconds(500);
+        // Open the claw
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        // wait until claw drops sample
+        safeWaitSeconds(500);
+        // Rotate claw back to parallel to slider
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        // wait until claw rotation is completed
+        safeWaitSeconds(500);
+        // set claw to closed position
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+    }
+
+    private void rotateSliderToDownPosition() {
+        boolean completed = false;
+        sr.setPower(0.0);
+        double currentTargetPosOrigin = sr.getTargetPosition();
+        double currentPosOrigin = sr.getCurrentPosition();
+        while(!completed && !isStopRequested()){
+            SM.setPos(CONSTANTS.SLIDEROTATEMIN, -0.5);
+            completed = sr.getCurrentPosition() < CONSTANTS.SLIDEROTATEMIN + 10;
+            telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
+            telemetry.addLine("currentPosOrigin " + currentPosOrigin);
+            telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
+            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + CONSTANTS.SLIDEROTATEMIN  );
+            telemetry.addLine("completed: "+  completed);
+            telemetry.update();
+        }
+        sr.setPower(0.0);
+        telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
+        telemetry.addLine("currentPosOrigin " + currentPosOrigin);
+        telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
+        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + CONSTANTS.SLIDEROTATEMIN  );
+        telemetry.addLine("completed: "+  completed);
+        telemetry.update();
+    }
+
+    private void rotateSliderTo90DegreeAngle() {
+        boolean completed = false;
+        //Rotate slide to 90
+        while(!completed && !isStopRequested()){
+            SM.setPos(CONSTANTS.SLIDEROTATEMAX, 1);
+            completed = sr.getCurrentPosition() < CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10;
+        }
+        //ensure slider stays at 90
+        sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sr.setPower(0.1); // TODO: increase if it does not hold at 90
+    }
+
+    private void expandSliderToTopBasket() {
+        boolean completed = false;
+        while(!completed && !isStopRequested()){
+            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX, 1);
+            telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+            telemetry.update();
+            // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
+            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
+        }
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
+    }
+
+    private void retractSlider() {
+        boolean completed = false;
+        sc.setPower(0.0); // reset slider power to zero
+        double currentTargetPos = sc.getTargetPosition();
+        double currentPos = sc.getCurrentPosition();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(1);
+        while(!completed && !isStopRequested()){
+            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            telemetry.addLine("currentTargetPos " + currentTargetPos);
+            telemetry.addLine("currentPos " + currentPos);
+            telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
+            telemetry.addLine("completed: "+  completed);
+            telemetry.update();
+            completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONLOW - 10;
+        }
+        telemetry.addLine("currentTargetPos " + currentTargetPos);
+        telemetry.addLine("currentPos " + currentPos);
+        telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
+        telemetry.addLine("completed: "+  completed);
+        telemetry.update();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(0.0); // reset slider power to zero
+
     }
 }

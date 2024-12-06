@@ -60,7 +60,7 @@ public class RightAuto extends LinearOpMode {
         autoDriver.init(hardwareMap,driver);
 
         //POSITIONS
-        int DropPos  = autoDriver.lineTo(300,0,1.0);
+        int DropPos  = autoDriver.lineTo(570,0,1.0);
         int pickup1  = autoDriver.lineTo(-100,100,1.0);
         int DropPos2 = autoDriver.lineTo(-100,100,1.0);
         int pickup2  = autoDriver.lineTo(-100,100,1.0);
@@ -85,11 +85,11 @@ public class RightAuto extends LinearOpMode {
         }
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setPower(0.1);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         safeWaitSeconds(100);
         completed = false;
         while(!completed && !isStopRequested()){
-            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX, 1);
+            SM.setPos2(-900, -1);
             completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX - 10 && sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -104,6 +104,34 @@ public class RightAuto extends LinearOpMode {
         timer.reset();
         while (!isStopRequested() && timer.time() < time) {
         }
+    }
+    private void retractSlider() {
+        boolean completed = false;
+        sc.setPower(0.0); // reset slider power to zero
+        double currentTargetPos = sc.getTargetPosition();
+        double currentPos = sc.getCurrentPosition();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(-1);
+        while(!completed && !isStopRequested()){
+            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
+            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            telemetry.addLine("currentTargetPos " + currentTargetPos);
+            telemetry.addLine("currentPos " + currentPos);
+            telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
+            telemetry.addLine("completed: "+  completed);
+            telemetry.update();
+            completed = sc.getCurrentPosition() > -CONSTANTS.SLIDEEXPANSTIONLOW - 50;
+        }
+        telemetry.addLine("currentTargetPos " + currentTargetPos);
+        telemetry.addLine("currentPos " + currentPos);
+        telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANSTIONLOW);
+        telemetry.addLine("completed: "+  completed);
+        telemetry.update();
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setPower(0.0); // reset slider power to zero
+
     }
     public void turnAngle(double turnAngle) {
         double error, currentHeadingAngle, driveMotorsPower;
