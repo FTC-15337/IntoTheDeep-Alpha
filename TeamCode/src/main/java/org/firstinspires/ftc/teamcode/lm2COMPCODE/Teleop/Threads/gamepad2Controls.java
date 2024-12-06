@@ -61,49 +61,39 @@ public class gamepad2Controls extends Thread{
                     mainFile.safeWaitSeconds(50);
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMAX,1);
+                    while(!mainFile.isStopRequested() && !(Math.abs(CONSTANTS.SLIDEROTATEMAX-sr.getCurrentPosition()) <= 10)){}
+                    sr.setPower(0.1);
+                    //mainFile.safeWaitSeconds(50);
 
-                    while (sr.getCurrentPosition() < CONSTANTS.SLIDEROTATEMAX-10){}
 
-                    mainFile.safeWaitSeconds(50);
+                    SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,1);
+                    while(!mainFile.isStopRequested() && !(Math.abs(CONSTANTS.SLIDEEXPANSTIONMAX-sc.getCurrentPosition()) <= 10)){}
 
-                    SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX,-1);
-
-                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX-10){}
+                    //mainFile.safeWaitSeconds(50);
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
-                    sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    mainFile.safeWaitMilliseconds(50);
+
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                 }
-                // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
+
                 // The code below is used for bringing everything to it's original position:
                 while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
                 {
-                    //mainFile.safeWaitSeconds(50);
-
-                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-
-                    mainFile.safeWaitSeconds(50);
+                    mainFile.safeWaitMilliseconds(50);
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
 
-                    mainFile.safeWaitSeconds(50);
+                    mainFile.safeWaitMilliseconds(50);
 
-                    SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,1);
-
-                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW+10){}
-
-                    mainFile.safeWaitSeconds(50);
-
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
-
-                    mainFile.safeWaitSeconds(50);
+                    SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,0.5);
+                    while(!mainFile.isStopRequested() && !(Math.abs(CONSTANTS.SLIDEEXPANTIONLOW-sc.getCurrentPosition()) <= 10)){}
+                    //mainFile.safeWaitSeconds(50);
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
-
-                    while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
-
-                    sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                } // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
+                    while(!mainFile.isStopRequested() && !(Math.abs(CONSTANTS.SLIDEROTATEMIN-sr.getCurrentPosition()) <= 10)){}
+                }
 
 
 
@@ -136,7 +126,7 @@ public class gamepad2Controls extends Thread{
                 if(gamepad2.left_bumper){
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                 }
-                if(gamepad2.dpad_left){
+                /*(if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.8);
                 }else if(gamepad2.dpad_right){
                     clawRotateServo2.setServoPosition(0.3);
@@ -145,9 +135,9 @@ public class gamepad2Controls extends Thread{
                 }else if(gamepad2.dpad_down){
                     clawRotateServo2.setServoPosition(0.9);
                 }else{
-                    clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
-                }
 
+                }*/
+                clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
