@@ -5,12 +5,12 @@ import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.parshwa.drive.tele.Drive;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 
-@TeleOp(name = "LimelightJavaCode")
+@Autonomous(name = "LimelightJavaCode")
 public class LimelightOptimized extends LinearOpMode {
 
     private static final double CAMERA_HEIGHT = 0.2; // Camera height in meters
