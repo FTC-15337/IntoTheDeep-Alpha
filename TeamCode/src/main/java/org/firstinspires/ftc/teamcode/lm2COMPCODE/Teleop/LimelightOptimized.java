@@ -80,7 +80,7 @@ public class LimelightOptimized extends LinearOpMode {
                     telemetry.addLine("Greater than 0.5 meters away from the target");
                 }
 
-                telemetry.update();
+
             } else {
                 telemetry.addLine("No valid result from Limelight.");
                 telemetry.update();
