@@ -44,6 +44,8 @@ public class gamepad2Controls extends Thread{
                 }else{
                     SM.move(-gamepad2.left_stick_y);
                 }
+
+
                 /*if(gamepad2.left_trigger > 0.1){
                     SM.setPos2(180 , 1);
                 }
@@ -52,9 +54,13 @@ public class gamepad2Controls extends Thread{
                 }*/
                 //SM.move(-gamepad2.left_stick_y);
                 mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+
+                if(gamepad2.left_trigger >= 0.3){
+                    mainFile.dropSampleToHighBasket();
+                }
                 // The code below is used for raising everything
                 // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
-                while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
+                /*while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
                     mainFile.dropSampleToHighBasket();
                 }
@@ -117,7 +123,7 @@ public class gamepad2Controls extends Thread{
                 if(gamepad2.right_bumper){
                     clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOCLOSE);
                 }
-                if(gamepad2.left_bumper){
+                if(gamepad2.left_bumper) {
                     clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOOPEN);
                 }
                 if(gamepad2.dpad_left){
@@ -132,12 +138,14 @@ public class gamepad2Controls extends Thread{
                     clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
                 }
 
+
+
             }
+
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
             mainFile.telemetry.addLine(String.valueOf(e));
         }
     }
 
-
-}
+ }
