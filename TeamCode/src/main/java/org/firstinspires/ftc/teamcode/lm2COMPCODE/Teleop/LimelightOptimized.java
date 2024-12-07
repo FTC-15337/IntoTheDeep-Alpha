@@ -16,7 +16,6 @@ public class LimelightOptimized extends LinearOpMode {
     private static final double CAMERA_HEIGHT = 0.17; // Camera height in meters
     private static final double TARGET_HEIGHT = 0.13; // Target height in meters
     private static final double CAMERA_PITCH_RADIANS = Math.toRadians(0); // Precomputed pitch angle
-
     private RevHubOrientationOnRobot orientation;
     private IMU imu;
     private Limelight3A limelight;
