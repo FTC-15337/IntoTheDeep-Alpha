@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -41,8 +43,10 @@ public class gamepad2Controls extends Thread{
                 if(sc.getCurrentPosition() < -20 && sr.getCurrentPosition() > 600) {
                     // when slider is at 90 degree and expanded then it gets small bit of power to stay up
                     SM.move(-gamepad2.left_stick_y + 0.05 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y + 0.05);
-                }else{
+                }else
+                {
                     SM.move(-gamepad2.left_stick_y);
+                    telemetry.addLine("Being called");
                 }
 
 
@@ -139,7 +143,6 @@ public class gamepad2Controls extends Thread{
                 }
 
 
-
             }
 
         }catch(Exception e){
@@ -148,4 +151,7 @@ public class gamepad2Controls extends Thread{
         }
     }
 
- }
+    public SliderManger getSM() {
+        return SM;
+    }
+}
