@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages;
 
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDERDOWNMAXEXTENTION;
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class SliderManger {
@@ -22,6 +25,10 @@ public class SliderManger {
         rotator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
     public void move(double controllerPower){
+        if (controller.getCurrentPosition() > SLIDERDOWNMAXEXTENTION && (rotator.getCurrentPosition() > SLIDEROTATEMIN -10 && rotator.getCurrentPosition() < SLIDEROTATEMIN +10) )
+        {
+            controllerPower = 0;
+        }
         controller.setPower(controllerPower);
     }
     public void setPos(int pos, double power){
@@ -31,6 +38,10 @@ public class SliderManger {
     }
     public void setPos2(int pos, double power){
         controller.setPower(power);
+        if (pos > SLIDERDOWNMAXEXTENTION && (rotator.getCurrentPosition() > SLIDEROTATEMIN -10 && rotator.getCurrentPosition() < SLIDEROTATEMIN +10) )
+        {
+            pos = SLIDERDOWNMAXEXTENTION;
+        }
         controller.setTargetPosition(pos);
         controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
