@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDERDOWNMAXEXTENTION;
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN;
+
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -47,8 +50,16 @@ public class gamepad2Controls extends Thread{
                     // when slider is at 90 degree and expanded then it gets small bit of power to stay up
                     SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
                 }else{
-                    SM.move(gamepad2.left_stick_y);
-                    SM.move(-gamepad2.left_stick_y + 0.05 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y + 0.05);
+                    if (sc.getCurrentPosition() < -SLIDERDOWNMAXEXTENTION && (sr.getCurrentPosition() > SLIDEROTATEMIN -10 && sr.getCurrentPosition() < SLIDEROTATEMIN +10) )
+                    {
+                        if(gamepad2.left_stick_y > 0.2){
+                            SM.move(1);
+                        }else{
+                            SM.move(0);
+                        }
+                    }else{
+                        SM.move(gamepad2.left_stick_y);
+                    }
                 }
 
 
