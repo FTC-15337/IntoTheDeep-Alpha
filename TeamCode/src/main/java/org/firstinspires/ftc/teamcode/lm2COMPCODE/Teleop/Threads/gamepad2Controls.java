@@ -46,8 +46,8 @@ public class gamepad2Controls extends Thread{
                 }else
                 {
                     SM.move(-gamepad2.left_stick_y);
-                    telemetry.addLine("Being called");
                 }
+
 
 
                 /*if(gamepad2.left_trigger > 0.1){
