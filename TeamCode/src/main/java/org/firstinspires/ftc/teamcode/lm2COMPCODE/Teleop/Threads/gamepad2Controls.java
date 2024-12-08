@@ -49,9 +49,6 @@ public class gamepad2Controls extends Thread{
                 }else{
                     SM.move(gamepad2.left_stick_y);
                     SM.move(-gamepad2.left_stick_y + 0.05 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y + 0.05);
-                }else
-                {
-                    SM.move(-gamepad2.left_stick_y);
                 }
 
 
