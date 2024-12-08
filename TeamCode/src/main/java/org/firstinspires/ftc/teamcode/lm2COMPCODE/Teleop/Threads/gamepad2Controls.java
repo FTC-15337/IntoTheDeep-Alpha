@@ -55,10 +55,14 @@ public class gamepad2Controls extends Thread{
                         if(gamepad2.left_stick_y > 0.2){
                             SM.move(1);
                         }else{
-                            SM.move(0);
+                            SM.move(0.1);
                         }
                     }else{
-                        SM.move(gamepad2.left_stick_y);
+                        if(sc.getCurrentPosition() < -SLIDERDOWNMAXEXTENTION * 1 / 2){
+                            SM.move(gamepad2.left_stick_y * 2 / 5);
+                        }else{
+                            SM.move(gamepad2.left_stick_y);
+                        }
                     }
                 }
 
