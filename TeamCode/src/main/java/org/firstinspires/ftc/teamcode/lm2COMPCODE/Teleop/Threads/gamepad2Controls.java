@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
+import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -23,6 +22,8 @@ public class gamepad2Controls extends Thread{
 
     public Gamepad gamepad2;
     private Teleop mainFile;
+    private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
+    private double times;
 
     public void init(Teleop main){
         this.mainFile = main;
@@ -33,6 +34,8 @@ public class gamepad2Controls extends Thread{
         this.clawServo = main.clawServo;
         this.clawRotateServo = main.clawRotateServo;
         this.clawRotateServo2 = main.clawRotateServo2;
+        this.autoDriver.init(main.hardwareMap,main.driver);
+        times = 0;
     }
 
     public void run(){
@@ -42,6 +45,9 @@ public class gamepad2Controls extends Thread{
                 resetEnabled = gamepad2.start;
                 if(sc.getCurrentPosition() < -20 && sr.getCurrentPosition() > 600) {
                     // when slider is at 90 degree and expanded then it gets small bit of power to stay up
+                    SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
+                }else{
+                    SM.move(gamepad2.left_stick_y);
                     SM.move(-gamepad2.left_stick_y + 0.05 > 1.0 ? -gamepad2.left_stick_y : -gamepad2.left_stick_y + 0.05);
                 }else
                 {
@@ -57,6 +63,25 @@ public class gamepad2Controls extends Thread{
                     SM.setPos2(0 , -1);
                 }*/
                 //SM.move(-gamepad2.left_stick_y);
+                if(gamepad2.right_trigger >= 0.3){
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+                    mainFile.safeWaitMilliseconds(500);
+                    times += 1;
+                    int finalpos = autoDriver.lineTo(times,0,0);
+                    int humanpos = autoDriver.lineTo(1200,0,0);
+                    boolean completed = false;
+                    while(!completed && !mainFile.isStopRequested() && bypassEnabled){
+                        completed = autoDriver.move(humanpos);
+                    }
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+                    clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+                    mainFile.safeWaitMilliseconds(500);
+                    completed = false;
+                    while(!completed && !mainFile.isStopRequested() && bypassEnabled){
+                        completed = autoDriver.move(humanpos);
+                    }
+                }
                 mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
 
                 if(gamepad2.left_trigger >= 0.3){
@@ -64,7 +89,7 @@ public class gamepad2Controls extends Thread{
                 }
                 // The code below is used for raising everything
                 // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
-                /*while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
+                while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
                     mainFile.dropSampleToHighBasket();
                 }
@@ -142,9 +167,7 @@ public class gamepad2Controls extends Thread{
                     clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
                 }
 
-
             }
-
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
             mainFile.telemetry.addLine(String.valueOf(e));

@@ -21,7 +21,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
-@TeleOp(name="AutoTestTeleop")
+@TeleOp(name="teleop")
 public class Teleop extends LinearOpMode {
     //driver1 vars
     public Drive driver = new Drive();

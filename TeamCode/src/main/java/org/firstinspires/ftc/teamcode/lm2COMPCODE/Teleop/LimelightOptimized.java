@@ -10,7 +10,7 @@ import com.parshwa.drive.tele.Drive;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
 
-@Autonomous(name = "LimelightJavaCode")
+@Autonomous(name = "LimelightJavaCodeOPTIMIZED")
 public class LimelightOptimized extends LinearOpMode {
 
     private static final double CAMERA_HEIGHT = 0.17; // Camera height in meters

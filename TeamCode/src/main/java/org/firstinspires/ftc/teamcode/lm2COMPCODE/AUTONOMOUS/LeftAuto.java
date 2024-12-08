@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
@@ -35,6 +37,7 @@ public class LeftAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         bottomLed = hardwareMap.get(Servo.class, "RGBLED");
         lighting.init2(this);
         lighting.start();
@@ -65,8 +68,8 @@ public class LeftAuto extends LinearOpMode {
 
         //POSITIONS
         int DropPos  = autoDriver.lineTo(-300,400,1.0);
-        int pickup1  = autoDriver.lineTo(-750,220,1.0);
-        int DropPos2 = autoDriver.lineTo(-100,100,1.0);
+        int pickup1  = autoDriver.lineTo(-675,240,1.0);
+        int DropPos2 = autoDriver.lineTo(-300,400,1.0);
         int pickup2  = autoDriver.lineTo(-100,100,1.0);
         int DropPos3 = autoDriver.lineTo(-100,100,1.0);
         int pickup3  = autoDriver.lineTo(-100,100,1.0);
@@ -84,22 +87,27 @@ public class LeftAuto extends LinearOpMode {
         }
         autoDriver.turnAngle(-45);
         dropSampleToHighBasket();
-
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         // wait to finish
         safeWaitSeconds(500);
         autoDriver.turnAngle(0);
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         safeWaitSeconds(500);
         completed = false;
         while(!completed && !isStopRequested()){
             completed = autoDriver.move(pickup1);
         }
-
-        // try same thing second time
-
-        //autoDriver.turnAngle(-45);
-        //dropSampleToHighBasket();
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        safeWaitSeconds(500);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        safeWaitSeconds(500);
+        completed = false;
+        while(!completed && !isStopRequested()){
+            completed = autoDriver.move(DropPos2);
+        }
+        autoDriver.turnAngle(-45);
+        dropSampleToHighBasket();
+        autoDriver.turnAngle(0);
 
 
         while(!isStopRequested()){
@@ -120,6 +128,8 @@ public class LeftAuto extends LinearOpMode {
         dropSampleActionsForClaw();
         // retract the slider back
         retractSlider();
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        safeWaitSeconds(100);
         // rotate slider to down position
         rotateSliderToDownPosition();
     }
