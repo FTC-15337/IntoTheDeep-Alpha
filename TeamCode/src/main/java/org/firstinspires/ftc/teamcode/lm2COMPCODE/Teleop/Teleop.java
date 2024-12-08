@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad2;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.parshwa.drive.tele.Drive;
@@ -15,6 +17,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad1Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad2Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.lights;
