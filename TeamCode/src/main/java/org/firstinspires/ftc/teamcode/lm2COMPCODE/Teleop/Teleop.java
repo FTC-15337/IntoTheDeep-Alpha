@@ -320,9 +320,6 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setPower(0.0); // reset slider power to zero
-        FtcDashboard.getInstance().getTelemetry().addLine("AARAV S. GET THE FUCK OFF OF THIS PAGE YOU FUCKING NIGGER");
-        FtcDashboard.getInstance().getTelemetry().addLine("THIS IS BANNED TO ALL TEAM MEMBERS");
-        FtcDashboard.getInstance().getTelemetry().update();
+        sc.setPower(0.0); // reset slider power to zeroDe
     }
 }

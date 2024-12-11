@@ -18,5 +18,5 @@ if((params.get("username") == "admin" && params.get("password") == "bypass") || 
     </ThemeProvider>,
   );
 }else{
-  alert("THIS IS ONLY FOR PARSHWA SHAH TO USE\nUSAGE BY ANYONE ELSE COULD LEAD TO ROBOT BEING DAMAGED\nGET THE FUCK OFF OF THIS AARAV YOU LITTLE NIGGER")
+  alert("Wrong Code")
 }
