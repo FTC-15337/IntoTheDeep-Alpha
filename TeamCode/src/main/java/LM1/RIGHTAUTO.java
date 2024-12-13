@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.COMPETITIONCODE;
+package LM1;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
