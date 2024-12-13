@@ -1,11 +1,10 @@
-package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads;
+package org.firstinspires.ftc.teamcode.Interleauge;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.AutoTestTeleop;
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 

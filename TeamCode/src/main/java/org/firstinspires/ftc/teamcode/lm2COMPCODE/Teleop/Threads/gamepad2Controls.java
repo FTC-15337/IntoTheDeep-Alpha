@@ -7,7 +7,7 @@ import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS;
+import org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Teleop;
@@ -139,33 +139,33 @@ public class gamepad2Controls extends Thread{
 
 
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
-                    clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEMIDDLE);
-                    SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMIN, 0.5);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+                    SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.5);
                 }
                 if(-gamepad2.right_stick_y >= 0.3 && !gamepad2.back){
-                    SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMAX, 0.5);
+                    SM.setPos(CONSTANTS.SLIDEROTATEMAX, 0.5);
                 }
-                if(sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)){
+                if(sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)){
                     sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                     sr.setPower(0.01);
                 }
                 if(gamepad2.b) {
-                    clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATELOW);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
                 if(gamepad2.a) {
-                    clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATELOWEST);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
                 }
                 if(gamepad2.y) {
-                    clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEMIDDLE);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                 }
                 if(gamepad2.x) {
-                    clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEHIGH);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
                 }
                 if(gamepad2.right_bumper){
-                    clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOCLOSE);
+                    clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
                 }
                 if(gamepad2.left_bumper) {
-                    clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOOPEN);
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                 }
                 if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.8);

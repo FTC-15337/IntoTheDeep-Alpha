@@ -106,19 +106,19 @@ public class Teleop extends LinearOpMode {
     }
     /*private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEHIGH);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOROTATEHIGH);
         // wait until claw is positioned on the top basket drop position
         safeWaitMilliseconds(500);
         // Open the claw
-        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOOPEN);
+        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOOPEN);
         // wait until claw drops sample
         safeWaitMilliseconds(500);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOROTATEMIDDLE);
         // wait until claw rotation is completed
         safeWaitMilliseconds(500);
         // set claw to closed position
-        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOCLOSE);
+        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOCLOSE);
     }*/
     /*private void rotateSliderToDownPosition() {
         boolean completed = false;
@@ -126,12 +126,12 @@ public class Teleop extends LinearOpMode {
         double currentTargetPosOrigin = sr.getTargetPosition();
         double currentPosOrigin = sr.getCurrentPosition();
         while(!completed && !isStopRequested()){
-            SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMIN, -0.5);
-            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMIN + 10;
+            SM.setPos(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMIN, -0.5);
+            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMIN + 10;
             telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
             telemetry.addLine("currentPosOrigin " + currentPosOrigin);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMIN  );
+            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMIN  );
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
         }
@@ -139,7 +139,7 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
         telemetry.addLine("currentPosOrigin " + currentPosOrigin);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMIN  );
+        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMIN  );
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
     }
@@ -148,8 +148,8 @@ public class Teleop extends LinearOpMode {
         boolean completed = false;
         //Rotate slide to 90
         while(!completed && !isStopRequested()){
-            SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMAX, 1);
-            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEROTATEMAX - 10;
+            SM.setPos(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMAX, 1);
+            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEROTATEMAX - 10;
         }
         //ensure slider stays at 90
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -159,7 +159,7 @@ public class Teleop extends LinearOpMode {
     /*public void dropSampleToHighBasket() {
         rotateSliderTo90DegreeAngle();
         // set claw rotation to be parallel to slider
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOROTATEMIDDLE);
         // wait to finish
         safeWaitMilliseconds(100);
         // expand slider to maximum
@@ -175,11 +175,11 @@ public class Teleop extends LinearOpMode {
    /* private void expandSliderToTopBasket() {
         boolean completed = false;
         while(!completed && !isStopRequested()){
-            SM.setPos2(org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
+            SM.setPos2(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
+            completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -198,15 +198,15 @@ public class Teleop extends LinearOpMode {
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEEXPANSTIONLOW);
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEEXPANSTIONLOW);
             telemetry.addLine("completed: "+  completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEEXPANSTIONLOW - 10;
+            completed = sc.getCurrentPosition() > org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEEXPANSTIONLOW - 10;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.CONSTANTS.SLIDEEXPANSTIONLOW);
+        telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SLIDEEXPANSTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
