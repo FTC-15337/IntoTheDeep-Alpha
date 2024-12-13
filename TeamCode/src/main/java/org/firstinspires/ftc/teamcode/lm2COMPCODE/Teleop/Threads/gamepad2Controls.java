@@ -7,10 +7,10 @@ import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
-import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.CONSTANTS;
+import org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
-import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.Teleop;
+import org.firstinspires.ftc.teamcode.Interleauge.Teleop;
 
 public class gamepad2Controls extends Thread{
     public boolean running = true;

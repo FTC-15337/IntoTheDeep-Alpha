@@ -1,4 +1,4 @@
-package LM1;
+package org.firstinspires.ftc.teamcode.LM1;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;

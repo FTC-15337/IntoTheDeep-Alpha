@@ -1,4 +1,4 @@
-package LM1;
+package org.firstinspires.ftc.teamcode.LM1;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.SECONDS;
 

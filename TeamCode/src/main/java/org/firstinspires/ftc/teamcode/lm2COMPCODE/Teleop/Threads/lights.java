@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
-import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.LeftAuto;
-import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.RightAuto;
-import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.Teleop;
+import org.firstinspires.ftc.teamcode.Interleauge.LeftAuto;
+import org.firstinspires.ftc.teamcode.Interleauge.RightAuto;
+import org.firstinspires.ftc.teamcode.Interleauge.Teleop;
 
 public class lights extends Thread{
     private Teleop mainFile;

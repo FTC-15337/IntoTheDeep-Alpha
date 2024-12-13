@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleauge;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 

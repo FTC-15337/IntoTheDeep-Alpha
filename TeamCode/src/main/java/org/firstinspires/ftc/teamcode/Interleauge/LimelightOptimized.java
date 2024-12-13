@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleauge;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;

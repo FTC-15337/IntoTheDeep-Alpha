@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleauge;
 
 import com.parshwa.drive.tele.Drive;
 import com.qualcomm.robotcore.hardware.DcMotor;
