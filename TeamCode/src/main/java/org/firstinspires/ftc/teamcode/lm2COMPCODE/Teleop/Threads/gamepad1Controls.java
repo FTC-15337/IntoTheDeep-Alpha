@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Interleauge.Teleop;
+import org.firstinspires.ftc.teamcode.COMPETITIONCODE.Interleauge.Teleop;
 
 public class gamepad1Controls extends Thread{
     public boolean running = true;
