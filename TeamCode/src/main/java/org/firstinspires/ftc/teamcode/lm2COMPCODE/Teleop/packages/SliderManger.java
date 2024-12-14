@@ -5,6 +5,8 @@ import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDER
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS;
+
 public class SliderManger {
     private DcMotor rotator;
     private DcMotor controller;
