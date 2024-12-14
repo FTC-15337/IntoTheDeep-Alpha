@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS;
+/*package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 
@@ -7,6 +7,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -17,13 +18,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS;
 import org.firstinspires.ftc.teamcode.Interleauge.Gamepad1Controls;
-import org.firstinspires.ftc.teamcode.Interleauge.Gamepad2;
+import org.firstinspires.ftc.teamcode.Interleauge.Gamepad2Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.test;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
 @TeleOp(name="AutoTestTeleop")
+@Disabled
 public class AutoTestTeleop extends LinearOpMode {
     //driver1 vars
     public Drive driver = new Drive();
@@ -40,7 +42,7 @@ public class AutoTestTeleop extends LinearOpMode {
 
     //Thread vars
     public Gamepad1Controls gampad1Thread = new Gamepad1Controls();
-    public Gamepad2 gamepad2Thread = new Gamepad2();
+    public Gamepad2Controls gamepad2Thread = new Gamepad2Controls();
     public Lights lighting = new Lights();
 
     //LEDS
@@ -215,3 +217,4 @@ public class AutoTestTeleop extends LinearOpMode {
 
     }
 }
+*/
