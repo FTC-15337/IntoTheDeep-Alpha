@@ -103,7 +103,7 @@ public class Gamepad2 extends Thread {
 
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
 
-                    mainFile.safeWaitSeconds(50);
+                    //mainFile.safeWaitSeconds(50);
 
                     SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
 
