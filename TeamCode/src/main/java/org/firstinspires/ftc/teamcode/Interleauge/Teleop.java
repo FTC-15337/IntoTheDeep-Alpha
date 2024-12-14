@@ -317,7 +317,7 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW);
         telemetry.addLine("completed: "+  completed);
         telemetry.update();
-        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.0); // reset slider power to zeroDe
     }
 }
