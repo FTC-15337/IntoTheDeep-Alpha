@@ -124,7 +124,7 @@ public class Gamepad2Controls extends Thread{
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
                 if(gamepad2.left_stick_y >= 0.3) {
-                    SM.move();
+                   // SM.move();
                 }
 
                 if(gamepad2.a) {
