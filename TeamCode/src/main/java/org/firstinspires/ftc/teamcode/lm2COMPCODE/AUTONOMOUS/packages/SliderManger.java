@@ -36,4 +36,10 @@ public class SliderManger {
         controller.setTargetPosition(pos);
         controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+
+    public void setPos2(int slideexpanstionlow) {
+    }
+
+    public void setPos(int sliderotatemin) {
+    }
 }

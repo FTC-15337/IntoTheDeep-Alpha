@@ -62,7 +62,7 @@ public class Gamepad2Controls extends Thread{
                 }
                 // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
                 // The code below is used for bringing everything to it's original position:
-                while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
+                /*while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
 
                 {
 
@@ -92,6 +92,22 @@ public class Gamepad2Controls extends Thread{
                 }*/ // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
 
 
+                    while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
+                    {
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+
+                    mainFile.safeWaitSeconds(50);
+
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+
+                    mainFile.safeWaitSeconds(50);
+
+                    SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+
+                    mainFile.safeWaitSeconds(50);
+
+                    SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+                    }
 
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -107,6 +123,10 @@ public class Gamepad2Controls extends Thread{
                 if(gamepad2.b) {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
+                if(gamepad2.left_stick_y >= 0.3) {
+                    SM.move();
+                }
+
                 if(gamepad2.a) {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
                 }
