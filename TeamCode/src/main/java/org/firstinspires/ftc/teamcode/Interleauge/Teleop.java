@@ -321,6 +321,3 @@ public class Teleop extends LinearOpMode {
         sc.setPower(0.0); // reset slider power to zeroDe
     }
 }
-
-
-// expansion, retraction,
