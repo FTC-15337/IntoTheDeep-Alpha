@@ -17,7 +17,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS;
 import org.firstinspires.ftc.teamcode.Interleauge.Gamepad1Controls;
-import org.firstinspires.ftc.teamcode.Interleauge.Gamepad2Controls;
+import org.firstinspires.ftc.teamcode.Interleauge.Gamepad2;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.test;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
@@ -40,7 +40,7 @@ public class AutoTestTeleop extends LinearOpMode {
 
     //Thread vars
     public Gamepad1Controls gampad1Thread = new Gamepad1Controls();
-    public Gamepad2Controls gamepad2Thread = new Gamepad2Controls();
+    public Gamepad2 gamepad2Thread = new Gamepad2();
     public Lights lighting = new Lights();
 
     //LEDS

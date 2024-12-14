@@ -14,7 +14,7 @@ public class Gamepad1Controls extends Thread{
     public boolean bypassEnabled = false;
     private Gamepad gamepad1;
     private Drive driver;
-    private Gamepad2Controls controller2;
+    private Gamepad2 controller2;
     private Servo led;
     private AutoTestTeleop mainFile;
     public void init(AutoTestTeleop main){
