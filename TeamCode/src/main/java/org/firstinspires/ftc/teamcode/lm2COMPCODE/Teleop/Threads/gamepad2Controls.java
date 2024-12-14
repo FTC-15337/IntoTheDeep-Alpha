@@ -12,7 +12,9 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.Interleauge.Teleop;
 
-public class gamepad2Controls extends Thread{
+import javax.swing.JSlider;
+
+public class  gamepad2Controls extends Thread{
     public boolean running = true;
     public boolean resetEnabled = false;
     public boolean bypassEnabled = false;

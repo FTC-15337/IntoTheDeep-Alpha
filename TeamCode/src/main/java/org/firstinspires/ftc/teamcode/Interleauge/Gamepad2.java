@@ -139,9 +139,19 @@ public class Gamepad2 extends Thread{
             if(gamepad2.right_bumper){
                 clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
             }
-            if(gamepad2.left_bumper){
+            if(gamepad2.left_bumper) {
                 clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
             }
+            if(-gamepad2.left_stick_y >= 0.3)
+            {
+                SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX);
+            }
+
+            if(gamepad2.left_stick_y <= 0.3)
+            {
+                SM.setPos(CONSTANTS.SLIDEEXPANSTIONLOW);
+            }
+
             if(gamepad2.dpad_left){
                 clawRotateServo2.setServoPosition(0.8);
             }else if(gamepad2.dpad_right){
