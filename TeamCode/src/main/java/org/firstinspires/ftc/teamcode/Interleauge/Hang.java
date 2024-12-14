@@ -1,18 +1,26 @@
 package org.firstinspires.ftc.teamcode.Interleauge;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareDevice;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp
-public class Hang {
-        private Servo leftServo;
-        private double ticksPerSecond;
+import org.firstinspires.ftc.ftccommon.internal.manualcontrol.commands.ServoCommands;
 
-    public void runOpMode(HardwareMap hwMap) {
-        DcMotor servo = hwMap.get(DcMotor.class, "Servo");
+@Disabled
+public class Hang extends LinearOpMode {
+    private Servo leftServo;
+
+
+    @Override
+    public void runOpMode() throws InterruptedException {
+        leftServo = hardwareMap.get(Servo.class, "leftServo");
+
+        waitForStart();
+
+        leftServo.setPosition(1.0);
+
+        sleep(3000);
+
+
     }
 }
