@@ -264,7 +264,7 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("currentPosOrigin " + currentPosOrigin);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
         telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN  );
-        telemetry.addLine("completed: "+  completed);
+         telemetry.addLine("completed: "+  completed);
         telemetry.update();
     }
 

@@ -6,7 +6,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 @Config
 public class CONSTANTS {
     public static double SERVOROTATELOWEST = 0.05;
-    public static double SERVOROTATELOW = 0.2;
+     public static double SERVOROTATELOW = 0.2;
     public static double SERVOROTATEMIDDLE = 0.57;
     public static double SERVOROTATEHIGH = 0.75;
     public static double SERVOOPEN = 0.4;
