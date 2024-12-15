@@ -18,7 +18,8 @@ public class AlignWithAprilTagMecanum extends LinearOpMode {
     private static final double APPROACH_DISTANCE = 0.5; // Target distance to stop near the tag (meters)
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode()
+    {
         // Initialize LimelightOptimized
         limelightOptimized = new LimelightOptimized();
         limelightOptimized.init(hardwareMap, telemetry);
