@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages;
 
 import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDERDOWNMAXEXTENTION;
 import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN;
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEVERTICALMAX;
+import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEVERTICALMIN;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -47,4 +49,22 @@ public class SliderManger {
         controller.setTargetPosition(pos);
         controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+    public void moveWithRotationLimit(double controllerPower) {
+        // Prevent slider extension past SLIDEVERTICALMAX if rotator is at around 90 degrees
+        if (rotator.getCurrentPosition() > 80 && rotator.getCurrentPosition() < 100 && controller.getCurrentPosition() > SLIDEVERTICALMAX) {
+            controllerPower = 0; // Stop the controller from moving
+        }
+        controller.setPower(controllerPower);
+    }
+
+    public void setPosWithRotationLimit(int pos, double power) {
+        // Prevent slider position from exceeding SLIDEVERTICALMAX if rotator is at 90 degrees
+        if (rotator.getCurrentPosition() == 90 && pos > SLIDEVERTICALMAX) {
+            pos = SLIDEVERTICALMAX; // Cap the position to SLIDEVERTICALMAX
+        }
+        controller.setPower(power);
+        controller.setTargetPosition(pos);
+        controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
 }
