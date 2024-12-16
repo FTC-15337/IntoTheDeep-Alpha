@@ -33,6 +33,7 @@ public class RightAuto extends LinearOpMode {
     private servoManger clawRotateServo = new servoManger();
     private servoManger clawRotateServo2 = new servoManger();
 
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -60,6 +61,15 @@ public class RightAuto extends LinearOpMode {
         autoDriver.init(hardwareMap,driver);
 
         //POSITIONS
+        /*int DropPos  = autoDriver.lineTo(570,0,1.0);
+        int pickup1mid  = autoDriver.lineTo(100,1200,1.0);
+        int pickup1  = autoDriver.lineTo(100,1200,1.0);
+        int DropPos2 = autoDriver.lineTo(-100,100,1.0);
+        int pickup2  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos3 = autoDriver.lineTo(-100,100,1.0);
+        int pickup3  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos4 = autoDriver.lineTo(-100,100,1.0);
+        */
         int DropPos  = autoDriver.lineTo(570,0,1.0);
         int pickup1mid  = autoDriver.lineTo(100,1200,1.0);
         int pickup1  = autoDriver.lineTo(100,1200,1.0);
@@ -70,11 +80,39 @@ public class RightAuto extends LinearOpMode {
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
 
         waitForStart();
+        //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
+        autoDriver.move(DropPos);
+        clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
 
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+
+
+
+
+        //Ranveer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       //Gahan
+
+        /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
-
         boolean completed = false;
         while(!completed && !isStopRequested()){
             completed = autoDriver.move(DropPos);
