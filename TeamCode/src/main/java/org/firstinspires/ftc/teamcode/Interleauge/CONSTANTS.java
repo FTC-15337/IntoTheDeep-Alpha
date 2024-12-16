@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Interleauge;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
-@Config(value = "autoDONTCHANGE")
+//@Config(value = "autoDONTCHANGE")
 public class CONSTANTS {
     public static double SERVOROTATELOWESTDELETE = 0.05;
     public static double SERVOROTATELOWEST = 0.05;
@@ -20,6 +20,7 @@ public class CONSTANTS {
 
     public static int SLIDEEXPANSTIONMAX = -2100;
     public static int SLIDEEXPANSTIONLOW = 1;
+    public static int SLIDEHIGHCHAMBER = 1000;
 
     public static int SLIDEROTATEMAX = 675;
     public static int SLIDEROTATEMIN = 0;

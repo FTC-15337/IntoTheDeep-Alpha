@@ -1,20 +1,15 @@
 package org.firstinspires.ftc.teamcode.Interleauge;
 
-import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
-
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
-import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
@@ -82,6 +77,7 @@ public class RightAuto extends LinearOpMode {
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
         int PushSample = autoDriver.lineTo(-100, 100, 1.0);
         int GoToHP = autoDriver.lineTo(-100, 100, 1.0);
+        int diagonal = autoDriver.lineTo(-100, 100, 1.0);
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
@@ -108,12 +104,24 @@ public class RightAuto extends LinearOpMode {
 
         autoDriver.move(PushSample); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
-        autoDriver.move(GoToHP); //Go to HP
+        autoDriver.move(diagonal); //Go to HP
         SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
         //Gahan
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        autoDriver.move(diagonal);
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        sleep(50);
+        SM.setPos2(CONSTANTS.SLIDEHIGHCHAMBER);
+        sleep(25);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        sleep(25);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN);
 
         /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
