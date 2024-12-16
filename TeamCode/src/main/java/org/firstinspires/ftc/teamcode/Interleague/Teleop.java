@@ -44,6 +44,7 @@ public class Teleop extends LinearOpMode {
 
     //LEDS
     public Servo bottomLed;
+
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -51,12 +52,12 @@ public class Teleop extends LinearOpMode {
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
         driver.change(imu);
-        driver.change("RFM","RBM","LFM","LBM");
+        driver.change("RFM", "RBM", "LFM", "LBM");
         driver.change(DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap,telemetry, DriveModes.MecanumFeildOriented);
+        driver.init(hardwareMap, telemetry, DriveModes.MecanumFeildOriented);
 
         //driver2 inits
         clawServo.init(hardwareMap, "cs");
@@ -72,7 +73,7 @@ public class Teleop extends LinearOpMode {
         sr.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
-        SM.init(sc,sr);
+        SM.init(sc, sr);
 
         //LEDS
         bottomLed = hardwareMap.get(Servo.class, "RGBLED");
@@ -86,22 +87,25 @@ public class Teleop extends LinearOpMode {
         gamepad2Thread.start();
         waitForStart();
         lighting.start();
-        while(!isStopRequested()){
+        while (!isStopRequested()) {
         }
     }
-    public void reset(){
+
+    public void reset() {
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         imu.resetYaw();
     }
+
     public void safeWaitMilliseconds(double time) {
         ElapsedTime timer = new ElapsedTime(MILLISECONDS);
         timer.reset();
         while (!isStopRequested() && timer.time() < time) {
         }
     }
+
     /*private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
         clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS.SERVOROTATEHIGH);
@@ -227,6 +231,7 @@ public class Teleop extends LinearOpMode {
         // rotate slider to down position
         rotateSliderToDownPosition();
     }
+
     private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
         clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOROTATEHIGH);
@@ -249,29 +254,29 @@ public class Teleop extends LinearOpMode {
         sr.setPower(0.0);
         double currentTargetPosOrigin = sr.getTargetPosition();
         double currentPosOrigin = sr.getCurrentPosition();
-        while(!completed && !isStopRequested()){
+        while (!completed && !isStopRequested()) {
             SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN, -0.5);
             completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN + 10;
             telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
             telemetry.addLine("currentPosOrigin " + currentPosOrigin);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN  );
-            telemetry.addLine("completed: "+  completed);
+            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN);
+            telemetry.addLine("completed: " + completed);
             telemetry.update();
         }
         sr.setPower(0.0);
         telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
         telemetry.addLine("currentPosOrigin " + currentPosOrigin);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN  );
-         telemetry.addLine("completed: "+  completed);
+        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN);
+        telemetry.addLine("completed: " + completed);
         telemetry.update();
     }
 
     private void rotateSliderTo90DegreeAngle() {
         boolean completed = false;
         //Rotate slide to 90
-        while(!completed && !isStopRequested()){
+        while (!completed && !isStopRequested()) {
             SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX, 1);
             completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX - 10;
         }
@@ -282,7 +287,7 @@ public class Teleop extends LinearOpMode {
 
     private void expandSliderToTopBasket() {
         boolean completed = false;
-        while(!completed && !isStopRequested()){
+        while (!completed && !isStopRequested()) {
             SM.setPos2(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
@@ -300,14 +305,14 @@ public class Teleop extends LinearOpMode {
         double currentPos = sc.getCurrentPosition();
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(1);
-        while(!completed && !isStopRequested()){
+        while (!completed && !isStopRequested()) {
             //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
             //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
             telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANTIONLOW);
-            telemetry.addLine("completed: "+  completed);
+            telemetry.addLine("completed: " + completed);
             telemetry.update();
             completed = sc.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANTIONLOW - 10;
         }
@@ -315,9 +320,9 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("currentPos " + currentPos);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
         telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + CONSTANTS.SLIDEEXPANTIONLOW);
-        telemetry.addLine("completed: "+  completed);
+        telemetry.addLine("completed: " + completed);
         telemetry.update();
-         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(0.0); // reset slider power to zeroDe
     }
 }
