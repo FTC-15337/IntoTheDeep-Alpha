@@ -78,8 +78,10 @@ public class RightAuto extends LinearOpMode {
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
         int PushSample = autoDriver.lineTo(-100, 100, 1.0);
         int GoToHP = autoDriver.lineTo(-100, 100, 1.0);
-        int diagonal = autoDriver.lineTo(-100, 100, 1.0);
+        int diagonalToChamber = autoDriver.lineTo(-100, 100, 1.0);
         int PushSampleSecondTime = autoDriver.lineTo(-100, 100,  1.0);
+        int leftToRung = autoDriver.lineTo(-100, 100, 1.0);
+        int backToRung = autoDriver.lineTo(-100, 100, 1.0);
 
         //Module 1
 
@@ -116,7 +118,7 @@ public class RightAuto extends LinearOpMode {
         //Module 3
 
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        autoDriver.move(diagonal);
+        autoDriver.move(diagonalToChamber);
         sleep(50);
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         sleep(50);
@@ -142,7 +144,7 @@ public class RightAuto extends LinearOpMode {
         //Module 3
 
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        autoDriver.move(diagonal);
+        autoDriver.move(diagonalToChamber);
         sleep(50);
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         sleep(50);
@@ -153,6 +155,16 @@ public class RightAuto extends LinearOpMode {
         SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
         sleep(50);
         SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+
+
+
+        //Mod 6
+        autoDriver.move(leftToRung);
+        autoDriver.move(backToRung);
+        sleep(25);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        sleep(10000);
 
         /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
