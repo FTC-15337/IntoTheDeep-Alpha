@@ -81,6 +81,7 @@ public class RightAuto extends LinearOpMode {
         int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
         int PushSample = autoDriver.lineTo(-100, 100, 1.0);
+        int GoToHP = autoDriver.lineTo(-100, 100, 1.0);
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
@@ -94,6 +95,7 @@ public class RightAuto extends LinearOpMode {
 
         autoDriver.move(PushSample);
         SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX);
+        autoDriver.move(GoToHP);
 
         //Gahan
 
