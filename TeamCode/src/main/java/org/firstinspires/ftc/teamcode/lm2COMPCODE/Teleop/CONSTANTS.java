@@ -17,10 +17,10 @@ public class CONSTANTS {
     public static double SERVOROTATE2RIGHT45 = 0.5;
     public static double SERVOROTATE2RIGHT90 = 0.5;
 
-    public static int SLIDEEXPANSTIONMAX = 2159;
+    public static int SLIDEEXPANSTIONMAX = 1500;
     public static int SLIDEEXPANTIONLOW = 0;
     public static int SLIDERDOWNMAXEXTENTION = 900;
-    public static int SLIDEVERTICALMAX = 0;
+    public static int SLIDEVERTICALMAX = 1500;
     public static int SLIDEVERTICALMIN = 0;
 
     public static int SLIDEROTATEMAX = 675;
