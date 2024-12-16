@@ -79,6 +79,7 @@ public class RightAuto extends LinearOpMode {
         int PushSample = autoDriver.lineTo(-100, 100, 1.0);
         int GoToHP = autoDriver.lineTo(-100, 100, 1.0);
         int diagonal = autoDriver.lineTo(-100, 100, 1.0);
+        int PushSampleSecondTime = autoDriver.lineTo(-100, 100,  1.0);
 
         //Module 1
 
@@ -104,6 +105,32 @@ public class RightAuto extends LinearOpMode {
 
 
         //Module 2
+
+        autoDriver.move(PushSample); //Push the sample
+        clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
+        autoDriver.move(diagonal); //Go to HP
+        SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
+        clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+
+        //Module 3
+
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        autoDriver.move(diagonal);
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        sleep(50);
+        SM.setPos2(CONSTANTS.SLIDEHIGHCHAMBER);
+        sleep(25);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        sleep(25);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+
+        //Second cycle
+
+        //Mod 2 changed for second cycle
 
         autoDriver.move(PushSample); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
