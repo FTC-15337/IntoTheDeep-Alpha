@@ -85,17 +85,17 @@ public class RightAuto extends LinearOpMode {
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
-        /*Bot moves back:*/ autoDriver.move(Movetosubmersible);
+        /*Bot Moves Back:*/ autoDriver.move(Movetosubmersible);
         sleep(50);
-        /*Claw drops back:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        /*Claw Drops Back:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
         sleep(50);
         /*Slider Rotates:*/ SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         sleep(50);
         /*Slider Raises:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
         sleep(50);
-        /*Bot moves Forward:*/ autoDriver.move(DropPos2);
+        /*Bot Moves Forward:*/ autoDriver.move(DropPos2);
         sleep(50);
-        /*Slider lowers:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        /*Slider Lowers:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
         sleep(50);
         /*Slider Rotates Down:*/ SM.setPos(CONSTANTS.SLIDEROTATEMIN);
         sleep(50);
