@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleague;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;

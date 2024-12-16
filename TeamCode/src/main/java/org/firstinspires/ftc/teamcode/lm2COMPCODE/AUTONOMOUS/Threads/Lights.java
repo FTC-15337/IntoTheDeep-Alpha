@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads;
 
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.AutoTestTeleop;
-import org.firstinspires.ftc.teamcode.Interleauge.LeftAuto;
-import org.firstinspires.ftc.teamcode.Interleauge.RightAuto;
+import org.firstinspires.ftc.teamcode.Interleague.LeftAuto;
+import org.firstinspires.ftc.teamcode.Interleague.RightAuto;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.TestAuto;
 
 public class Lights extends Thread{

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
-import org.firstinspires.ftc.teamcode.Interleauge.Teleop;
+import org.firstinspires.ftc.teamcode.Interleague.Teleop;
 
 public class test extends Thread{
     public boolean running = true;

@@ -1,6 +1,5 @@
-package org.firstinspires.ftc.teamcode.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleague;
 
-import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 //@Config(value = "autoDONTCHANGE")

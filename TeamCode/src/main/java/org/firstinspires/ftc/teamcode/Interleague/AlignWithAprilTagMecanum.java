@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleague;
 
 import com.parshwa.drive.tele.Drive;
 import com.qualcomm.hardware.limelightvision.LLResult;

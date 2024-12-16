@@ -16,9 +16,9 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Interleauge.CONSTANTS;
-import org.firstinspires.ftc.teamcode.Interleauge.Gamepad1Controls;
-import org.firstinspires.ftc.teamcode.Interleauge.Gamepad2;
+import org.firstinspires.ftc.teamcode.Interleague.CONSTANTS;
+import org.firstinspires.ftc.teamcode.Interleague.Gamepad1Controls;
+import org.firstinspires.ftc.teamcode.Interleague.Gamepad2;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.test;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;

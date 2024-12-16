@@ -1,10 +1,8 @@
-package org.firstinspires.ftc.teamcode.Interleauge;
+package org.firstinspires.ftc.teamcode.Interleague;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.ftccommon.internal.manualcontrol.commands.ServoCommands;
 
 @Disabled
 public class Hang extends LinearOpMode {
