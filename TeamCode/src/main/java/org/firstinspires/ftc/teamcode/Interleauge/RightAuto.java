@@ -93,9 +93,12 @@ public class RightAuto extends LinearOpMode {
 
         //Ranveer movement 2. Robot strafes to the left and extends slider.
 
-        autoDriver.move(PushSample);
-        SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX);
-        autoDriver.move(GoToHP);
+        autoDriver.move(PushSample); //Push the sample
+        clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
+        autoDriver.move(GoToHP); //Go to HP
+        SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
+        clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
         //Gahan
 
