@@ -41,6 +41,7 @@ public class AlignWithAprilTagMecanum extends LinearOpMode {
             LLResult result = limelightOptimized.getLatestResult();
 
             if (limelightOptimized.isResultValid(result)) {
+                telemetry.addLine("Limelight is running with valod result");
                 double tx = result.getTx(); // Horizontal alignment angle
                 double ty = result.getTy(); // Vertical alignment angle
                 double distance = limelightOptimized.calculateHorizontalDistance(ty); // Distance to tag
@@ -57,6 +58,7 @@ public class AlignWithAprilTagMecanum extends LinearOpMode {
                 telemetry.addData("Strafe Speed", strafeSpeed);
                 telemetry.addData("Forward Speed", forwardSpeed);
             } else {
+                telemetry.addLine("Limelight running");
                 telemetry.addLine("No valid AprilTag detected.");
                 driver.move(0, 0, 0); // Stop the robot
             }
