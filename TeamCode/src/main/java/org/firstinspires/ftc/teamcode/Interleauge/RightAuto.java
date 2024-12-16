@@ -5,13 +5,11 @@ import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
-import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -48,19 +46,19 @@ public class RightAuto extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        SM.init(sc, sr);
+        SM.init(sc,sr);
 
-        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP);
+        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
         driver.change(imu);
-        driver.change("RFM", "RBM", "LFM", "LBM");
+        driver.change("RFM","RBM","LFM","LBM");
         driver.change(DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap, telemetry, DriveModes.MecanumRobotOriented);
-        autoDriver.init(hardwareMap, driver);
+        driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
+        autoDriver.init(hardwareMap,driver);
 
         //POSITIONS
         /*int DropPos  = autoDriver.lineTo(570,0,1.0);
@@ -72,31 +70,54 @@ public class RightAuto extends LinearOpMode {
         int pickup3  = autoDriver.lineTo(-100,100,1.0);
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
         */
-        int DropPos = autoDriver.lineTo(570, 0, 1.0);
-        int pickup1mid = autoDriver.lineTo(100, 1200, 1.0);
-        int pickup1 = autoDriver.lineTo(100, 1200, 1.0);
-        int DropPos2 = autoDriver.lineTo(-100, 100, 1.0);
-        int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
-        int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
-        int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
-        int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
-        int PushSample = autoDriver.lineTo(-100, 100, 1.0);
+        int Movetosubmersible  = autoDriver.lineTo(570,0,1.0);
+        int pickup1mid  = autoDriver.lineTo(100,1200,1.0);
+        int pickup1  = autoDriver.lineTo(100,1200,1.0);
+        int DropPos2 = autoDriver.lineTo(-100,100,1.0);
+        int pickup2  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos3 = autoDriver.lineTo(-100,100,1.0);
+        int pickup3  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos4 = autoDriver.lineTo(-100,100,1.0);
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
-        autoDriver.move(DropPos);
-        clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
+       /*Bot moves back:*/ autoDriver.move(Movetosubmersible);
+       /*Claw drops back:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+       /*Slider Rotates:*/ SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+       /*Slider Raises:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
+       /*Bot moves Forward:*/ autoDriver.move(DropPos2);
+       /*Slider lowers:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+       /*Slider Rotates Down:*/ SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+       /*Claw Opens:*/ clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        /*Claw Moves Up:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
 
-        //Ranveer movement 2. Robot strafes to the left and extends slider.
-
-        autoDriver.move(PushSample);
-        SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX);
 
 
-        //Gahan
+
+
+
+
+
+        //Ranveer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       //Gahan
 
         /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -251,8 +272,5 @@ public class RightAuto extends LinearOpMode {
         sc.setPower(0.0); // reset slider power to zero
 
     }
-
 }
-         */
-    }
-}
+}*/
