@@ -95,7 +95,6 @@ public class RightAuto extends LinearOpMode {
         autoDriver.move(PushSample);
         SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX);
 
-
         //Gahan
 
         /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
