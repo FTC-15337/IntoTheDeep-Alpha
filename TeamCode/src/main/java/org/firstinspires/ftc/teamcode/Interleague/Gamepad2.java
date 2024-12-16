@@ -127,7 +127,7 @@ public class Gamepad2 extends Thread {
                 }
                 if (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)) {
                     sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    sr.setPower(0.01);
+                    sr.setPower(0.007);
                 }
                 if (gamepad2.b) {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
