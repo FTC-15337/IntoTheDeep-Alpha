@@ -72,7 +72,7 @@ public class RightAuto extends LinearOpMode {
         int pickup3  = autoDriver.lineTo(-100,100,1.0);
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
         */
-        int DropPos = autoDriver.lineTo(570, 0, 1.0);
+        int Movetosubmersible = autoDriver.lineTo(570, 0, 1.0);
         int pickup1mid = autoDriver.lineTo(100, 1200, 1.0);
         int pickup1 = autoDriver.lineTo(100, 1200, 1.0);
         int DropPos2 = autoDriver.lineTo(-100, 100, 1.0);
@@ -85,10 +85,23 @@ public class RightAuto extends LinearOpMode {
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
-        autoDriver.move(DropPos);
-        clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
+        /*Bot moves back:*/ autoDriver.move(Movetosubmersible);
+        sleep(50);
+        /*Claw drops back:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        sleep(50);
+        /*Slider Rotates:*/ SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        sleep(50);
+        /*Slider Raises:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
+        sleep(50);
+        /*Bot moves Forward:*/ autoDriver.move(DropPos2);
+        sleep(50);
+        /*Slider lowers:*/ SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        sleep(50);
+        /*Slider Rotates Down:*/ SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+        sleep(50);
+        /*Claw Opens:*/ clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        sleep(50);
+        /*Claw Moves Up:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
 
         //Ranveer movement 2. Robot strafes to the left and extends slider.
