@@ -67,6 +67,7 @@ public class RightAuto extends LinearOpMode {
         int pickup3  = autoDriver.lineTo(-100,100,1.0);
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
         */
+
         int Movetosubmersible = autoDriver.lineTo(570, 0, 1.0);
         int pickup1mid = autoDriver.lineTo(100, 1200, 1.0);
         int pickup1 = autoDriver.lineTo(100, 1200, 1.0);
@@ -78,6 +79,8 @@ public class RightAuto extends LinearOpMode {
         int PushSample = autoDriver.lineTo(-100, 100, 1.0);
         int GoToHP = autoDriver.lineTo(-100, 100, 1.0);
         int diagonal = autoDriver.lineTo(-100, 100, 1.0);
+
+        //Module 1
 
         waitForStart();
         //Movt 1: Bot moves back, claw drops back, slider rotates, bot moves forward, slider lowers, slider rotates, claw opens & raises.
@@ -100,7 +103,7 @@ public class RightAuto extends LinearOpMode {
         /*Claw Moves Up:*/ clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
 
-        //Ranveer movement 2. Robot strafes to the left and extends slider.
+        //Module 2
 
         autoDriver.move(PushSample); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
@@ -109,7 +112,8 @@ public class RightAuto extends LinearOpMode {
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
 
-        //Gahan
+        //Module 3
+
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         autoDriver.move(diagonal);
         sleep(50);
