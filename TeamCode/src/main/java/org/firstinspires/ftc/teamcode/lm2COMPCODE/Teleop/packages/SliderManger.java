@@ -66,5 +66,8 @@ public class SliderManger {
         controller.setTargetPosition(pos);
         controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-
 }
+
+
+
+
