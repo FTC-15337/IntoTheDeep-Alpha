@@ -108,7 +108,7 @@ public class RightAuto extends LinearOpMode {
 
         autoDriver.move(PushSample); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
-        autoDriver.move(diagonal); //Go to HP
+        autoDriver.move(GoToHP); //Go to HP
         SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
@@ -132,9 +132,9 @@ public class RightAuto extends LinearOpMode {
 
         //Mod 2 changed for second cycle
 
-        autoDriver.move(PushSample); //Push the sample
+        autoDriver.move(PushSampleSecondTime); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
-        autoDriver.move(diagonal); //Go to HP
+        autoDriver.move(GoToHP); //Go to HP
         SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
