@@ -67,6 +67,15 @@ public class LeftAuto extends LinearOpMode {
         autoDriver.enableTurn(this);
 
         //POSITIONS
+        /*int DropPos  = autoDriver.lineTo(-300,400,1.0);
+        int pickup1  = autoDriver.lineTo(-675,240,1.0);
+        int DropPos2 = autoDriver.lineTo(-300,400,1.0);
+        int pickup2  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos3 = autoDriver.lineTo(-100,100,1.0);
+        int pickup3  = autoDriver.lineTo(-100,100,1.0);
+        int DropPos4 = autoDriver.lineTo(-100,100,1.0);
+         */
+
         int DropPos  = autoDriver.lineTo(-300,400,1.0);
         int pickup1  = autoDriver.lineTo(-675,240,1.0);
         int DropPos2 = autoDriver.lineTo(-300,400,1.0);
@@ -86,7 +95,6 @@ public class LeftAuto extends LinearOpMode {
 
 
         //Module 1:
-
 
 
 
