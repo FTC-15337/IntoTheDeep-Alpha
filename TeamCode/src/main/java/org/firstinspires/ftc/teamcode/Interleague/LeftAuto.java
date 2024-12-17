@@ -77,6 +77,21 @@ public class LeftAuto extends LinearOpMode {
 
         waitForStart();
 
+        //Preload:
+
+
+
+
+
+
+
+        //Module 1:
+
+
+
+
+
+
         /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
