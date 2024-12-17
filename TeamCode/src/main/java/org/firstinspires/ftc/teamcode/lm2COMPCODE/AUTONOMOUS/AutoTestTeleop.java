@@ -31,7 +31,7 @@ public class AutoTestTeleop extends LinearOpMode {
     public Drive driver = new Drive();
     private double SPED = 0;
     public IMU imu;
-    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.logoDirection, CONSTANTS.usDirection);
+    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.logoDirection, CONSTANTS.usDirection);
 
     //driver2 vars
     public SliderManger SM = new SliderManger();

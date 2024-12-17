@@ -33,6 +33,7 @@ public class Gamepad2 extends Thread {
         this.clawRotateServo2 = main.clawRotateServo2;
         sr.setDirection(DcMotorSimple.Direction.FORWARD);
         sc.setDirection(DcMotorSimple.Direction.FORWARD);
+        clawRotateServo.setServoPosition(CONSTANTS.CLAWSTARTPOS);
     }
 
     public void run() {
