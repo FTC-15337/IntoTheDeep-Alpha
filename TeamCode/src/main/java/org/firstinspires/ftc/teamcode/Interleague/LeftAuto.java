@@ -96,6 +96,13 @@ public class LeftAuto extends LinearOpMode {
 
         //Module 1:
 
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        sleep(50);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
+
 
 
 
