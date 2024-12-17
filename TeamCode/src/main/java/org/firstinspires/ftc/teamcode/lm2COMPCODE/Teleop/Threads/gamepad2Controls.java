@@ -41,10 +41,12 @@ public class  gamepad2Controls extends Thread{
         this.clawRotateServo2 = main.clawRotateServo2;
         this.autoDriver.init(main.hardwareMap,main.driver);
         times = 0;
+        mainFile.telemetry.addLine("Init of GP2C");
     }
 
     public void run(){
         try{
+            mainFile.telemetry.addLine("Run of GP2C");
             while(running && !mainFile.isStopRequested()){
                 bypassEnabled = gamepad2.back;
                 resetEnabled = gamepad2.start;
@@ -96,7 +98,7 @@ public class  gamepad2Controls extends Thread{
                         completed = autoDriver.move(humanpos);
                     }
                 }
-                mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+                //mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
 
                 if(gamepad2.left_trigger >= 0.3){
                     mainFile.dropSampleToHighBasket();
@@ -184,7 +186,9 @@ public class  gamepad2Controls extends Thread{
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
-            mainFile.telemetry.addLine(String.valueOf(e));
+            //mainFile.telemetry.addLine(String.valueOf(e));
+            mainFile.telemetry.addData("error in GC2", String.valueOf(e));
+
         }
     }
 

@@ -169,8 +169,8 @@ public class TestAuto extends LinearOpMode {
         boolean completed = false;
         while(!completed && !isStopRequested()){
             SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX, 1);
-            telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
-            telemetry.update();
+            //telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+            //telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
             completed = sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANSTIONMAX;
         }

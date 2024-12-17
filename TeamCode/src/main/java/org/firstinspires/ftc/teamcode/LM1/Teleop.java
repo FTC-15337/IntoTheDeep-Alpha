@@ -83,7 +83,7 @@ public class Teleop extends LinearOpMode {
             }
             driver.move(gamepad1.left_stick_y,-gamepad1.left_stick_x,gamepad1.right_stick_x,SPED);
             //driver2
-            telemetry.addLine(String.valueOf(gamepad2.left_stick_y));
+            //telemetry.addLine(String.valueOf(gamepad2.left_stick_y));
             if(sc.getCurrentPosition() < -20 && sr.getCurrentPosition() > 600) {
                 SM.move(gamepad2.left_stick_y - 0.01 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.01);
             }else{
@@ -141,7 +141,7 @@ public class Teleop extends LinearOpMode {
             if(touchSensor.isPressed()){
                 SM.reset();
             }
-            telemetry.addLine(String.valueOf(sr.getCurrentPosition()));
+            //telemetry.addLine(String.valueOf(sr.getCurrentPosition()));
             if(gamepad2.b) {
                 clawRotateServo.setServoPosition(0.1);
             }

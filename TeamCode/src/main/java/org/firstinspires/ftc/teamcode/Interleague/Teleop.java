@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.Interleague;
 
 import static com.qualcomm.robotcore.util.ElapsedTime.Resolution.MILLISECONDS;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.parshwa.drive.tele.Drive;
@@ -46,49 +48,68 @@ public class Teleop extends LinearOpMode {
     public Servo bottomLed;
 
     @Override
-    public void runOpMode() throws InterruptedException {
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
-        //driver1 inits
+    public void runOpMode() {
+            telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+            //driver1 inits
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
-        driver.change(imu);
-        driver.change("RFM", "RBM", "LFM", "LBM");
-        driver.change(DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.FORWARD,
-                DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap, telemetry, DriveModes.MecanumFeildOriented);
+            driver.change(imu);
+            driver.change("RFM", "RBM", "LFM", "LBM");
 
-        //driver2 inits
+        driver.change(DcMotorSimple.Direction.FORWARD,
+                    DcMotorSimple.Direction.FORWARD,
+                    DcMotorSimple.Direction.FORWARD,
+                    DcMotorSimple.Direction.REVERSE);
+            driver.init(hardwareMap, telemetry, DriveModes.MecanumFeildOriented);
+            //driver2 inits
+
         clawServo.init(hardwareMap, "cs");
         clawRotateServo.init(hardwareMap, "crs");
         clawRotateServo2.init(hardwareMap, "crs2");
+
+
         sc = hardwareMap.dcMotor.get("sc");
-        sr = hardwareMap.dcMotor.get("sr");
-        sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sc.setDirection(DcMotorSimple.Direction.FORWARD);
-        sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sr.setDirection(DcMotorSimple.Direction.FORWARD);
+            sr = hardwareMap.dcMotor.get("sr");
+            sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            sc.setDirection(DcMotorSimple.Direction.FORWARD);
+            sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            sr.setDirection(DcMotorSimple.Direction.FORWARD);
+
+            SM.init(sc, sr);
+
+            //LEDS
+            //bottomLed = hardwareMap.get(Servo.class, "RGBLED");
+            //lighting.init(this);
+
+            //Thread inits
+            gampad1Thread.init(this);
+            gamepad2Thread.init(this);
+            gampad1Thread.add2Controls();
+            gampad1Thread.start();
+            gamepad2Thread.start();
+
+        telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
+        telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+
+        telemetry.addLine("Positions set in TeleOp.Java");
+        clawRotateServo.setServoPosition(1);
+        clawRotateServo2.setServoPosition(1);
+        clawServo.setServoPosition(1);
+
+        telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
+        telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+
+            waitForStart();
+
+            //lighting.start();
 
 
-        SM.init(sc, sr);
 
-        //LEDS
-        bottomLed = hardwareMap.get(Servo.class, "RGBLED");
-        lighting.init(this);
+            while (!isStopRequested()) {
+            }
 
-        //Thread inits
-        gampad1Thread.init(this);
-        gamepad2Thread.init(this);
-        gampad1Thread.add2Controls();
-        gampad1Thread.start();
-        gamepad2Thread.start();
-        waitForStart();
-        lighting.start();
-        while (!isStopRequested()) {
-        }
     }
 
     public void reset() {
@@ -96,13 +117,18 @@ public class Teleop extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        telemetry.addLine("Reset in TeleOp.Java");
+
         imu.resetYaw();
     }
 
     public void safeWaitMilliseconds(double time) {
         ElapsedTime timer = new ElapsedTime(MILLISECONDS);
         timer.reset();
-        while (!isStopRequested() && timer.time() < time) {
+        while (!isStopRequested() && timer.time() < time)
+        {
+            //clawRotateServo.setServoPosition(0.5);
+            //clawRotateServo2.setServoPosition(0.5);
         }
     }
 
@@ -289,8 +315,8 @@ public class Teleop extends LinearOpMode {
         boolean completed = false;
         while (!completed && !isStopRequested()) {
             SM.setPos2(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
-            telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
-            telemetry.update();
+            //telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+            //telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
             completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }

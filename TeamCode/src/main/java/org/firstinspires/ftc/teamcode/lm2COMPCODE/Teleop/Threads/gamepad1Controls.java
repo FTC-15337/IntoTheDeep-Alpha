@@ -22,12 +22,16 @@ public class gamepad1Controls extends Thread{
         this.driver = main.driver;
         this.led = main.bottomLed;
         this.mainFile = main;
+        //mainFile.telemetry.addLine("Inside Init .of GP1");
+
     }
     public void add2Controls(){
         this.controller2 = mainFile.gamepad2Thread;
     }
     public void run(){
         try{
+            //mainFile.telemetry.addLine("Inside Run of GP1");
+
             while(!mainFile.isStarted()){}
             while(running && !mainFile.isStopRequested()){
                 SPED = gamepad1.right_trigger;
@@ -59,7 +63,8 @@ public class gamepad1Controls extends Thread{
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
-            mainFile.telemetry.addLine(String.valueOf(e));
+            mainFile.telemetry.addData("error in GC1", String.valueOf(e));
+            //mainFile.telemetry.addLine(String.valueOf(e));
             mainFile.gamepad2Thread.start();
         }
     }

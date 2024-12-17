@@ -17,7 +17,7 @@ public class CONSTANTS {
         public static double SERVOROTATE2MID = 0.5;
         public static double SERVOROTATE2RIGHT45 = 0.5;
         public static double SERVOROTATE2RIGHT90 = 0.5;
-        public static double SERVOROTATETOHIGHBASKET = 0.8;
+        public static double CLAWSTARTPOS = 0.0;
 
         public static int SLIDEEXPANSTIONMAX = -2100;
         public static int SLIDEEXPANSTIONLOW = 1;

@@ -16,7 +16,8 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderMang
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
 @Autonomous(name="right auto")
-public class RightAuto extends LinearOpMode {
+public class RightAuto extends LinearOpMode
+{
     public Lights lighting = new Lights();
     public Servo bottomLed;
 
@@ -44,6 +45,9 @@ public class RightAuto extends LinearOpMode {
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         SM.init(sc, sr);
+
+
+        waitForStart();
 
         RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP);
         imu = hardwareMap.get(IMU.class, "imu");

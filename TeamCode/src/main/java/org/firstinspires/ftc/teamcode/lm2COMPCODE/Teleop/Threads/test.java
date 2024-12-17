@@ -136,7 +136,8 @@ public class test extends Thread{
             }
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
-            mainFile.telemetry.addLine(String.valueOf(e));
+            mainFile.telemetry.addData("error in test", String.valueOf(e));
+            //mainFile.telemetry.addLine(String.valueOf(e));
         }
     }
 

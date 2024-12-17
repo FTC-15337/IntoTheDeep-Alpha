@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Interleague;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Gamepad;
@@ -22,7 +24,8 @@ public class Gamepad2 extends Thread {
     public Gamepad gamepad2;
     private AutoTestTeleop mainFile;
 
-    public void init(AutoTestTeleop main) {
+    public void init(AutoTestTeleop main)
+    {
         this.mainFile = main;
         this.gamepad2 = main.gamepad2;
         this.SM = main.SM;
@@ -33,13 +36,15 @@ public class Gamepad2 extends Thread {
         this.clawRotateServo2 = main.clawRotateServo2;
         sr.setDirection(DcMotorSimple.Direction.FORWARD);
         sc.setDirection(DcMotorSimple.Direction.FORWARD);
-        clawRotateServo.setServoPosition(CONSTANTS.CLAWSTARTPOS);
+
+        mainFile.telemetry.addLine("Inside Init of Gamepad2");
+
     }
 
     public void run() {
         try {
 
-            mainFile.telemetry.addLine("Inside method");
+            mainFile.telemetry.addLine("Inside run of Gamepad2");
 
             while (running && !mainFile.isStopRequested()) {
                 bypassEnabled = gamepad2.back;
@@ -57,7 +62,7 @@ public class Gamepad2 extends Thread {
                     SM.setPos2(0 , -1);
                 }*/
                 //SM.move(-gamepad2.left_stick_y);
-                mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
+
                 // The code below is used for raising everything
                 // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
                 while (gamepad2.left_trigger >= 0.3 && !(gamepad2.back)) {
@@ -133,7 +138,7 @@ public class Gamepad2 extends Thread {
                 clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
             }
             if (gamepad2.y) {
-                clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+                clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE + 1);
             }
             if (gamepad2.x) {
                 clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
