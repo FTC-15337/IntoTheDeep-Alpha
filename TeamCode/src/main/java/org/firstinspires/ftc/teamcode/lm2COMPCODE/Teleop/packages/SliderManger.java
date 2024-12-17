@@ -1,13 +1,13 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages;
 
-import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDERDOWNMAXEXTENTION;
-import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN;
-import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEVERTICALMAX;
-import static org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEVERTICALMIN;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERDOWNMAXEXTENTION;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEVERTICALMAX;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEVERTICALMIN;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS;
+import org.firstinspires.ftc.teamcode.Interleague.CONSTANTS;
 
 public class SliderManger {
     private DcMotor rotator;
