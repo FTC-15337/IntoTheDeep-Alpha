@@ -167,6 +167,7 @@ public class RightAuto extends LinearOpMode {
         autoDriver.move(backToRung);
         sleep(25);
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         sleep(10000);
 
