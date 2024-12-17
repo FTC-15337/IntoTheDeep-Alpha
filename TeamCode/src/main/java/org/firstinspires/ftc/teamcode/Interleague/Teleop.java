@@ -15,7 +15,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS;
+import org.firstinspires.ftc.teamcode.Interleague.CONSTANTS;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad1Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.gamepad2Controls;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads.lights;
@@ -28,7 +28,7 @@ public class Teleop extends LinearOpMode {
     public Drive driver = new Drive();
     private double SPED = 0;
     public IMU imu;
-    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.logoDirection, org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.usDirection);
+    private RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.logoDirection, org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.usDirection);
 
     //driver2 vars
     public SliderManger SM = new SliderManger();
@@ -219,7 +219,7 @@ public class Teleop extends LinearOpMode {
     public void dropSampleToHighBasket() {
         rotateSliderTo90DegreeAngle();
         // set claw rotation to be parallel to slider
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOROTATEMIDDLE);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SERVOROTATEMIDDLE);
         // wait to finish
         safeWaitMilliseconds(100);
         // expand slider to maximum
@@ -234,19 +234,19 @@ public class Teleop extends LinearOpMode {
 
     private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOROTATEHIGH);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SERVOROTATEHIGH);
         // wait until claw is positioned on the top basket drop position
         safeWaitMilliseconds(1000);
         // Open the claw
-        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOOPEN);
+        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SERVOOPEN);
         // wait until claw drops sample
         safeWaitMilliseconds(1000);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOROTATELOWEST);
+        clawRotateServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SERVOROTATELOWEST);
         // wait until claw rotation is completed
         safeWaitMilliseconds(1000);
         // set claw to closed position
-        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SERVOCLOSE);
+        clawServo.setServoPosition(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SERVOCLOSE);
     }
 
     private void rotateSliderToDownPosition() {
@@ -255,12 +255,12 @@ public class Teleop extends LinearOpMode {
         double currentTargetPosOrigin = sr.getTargetPosition();
         double currentPosOrigin = sr.getCurrentPosition();
         while (!completed && !isStopRequested()) {
-            SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN, -0.5);
-            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN + 10;
+            SM.setPos(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN, -0.5);
+            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN + 10;
             telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
             telemetry.addLine("currentPosOrigin " + currentPosOrigin);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN);
+            telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN);
             telemetry.addLine("completed: " + completed);
             telemetry.update();
         }
@@ -268,7 +268,7 @@ public class Teleop extends LinearOpMode {
         telemetry.addLine("currentTargetPosOrigin " + currentTargetPosOrigin);
         telemetry.addLine("currentPosOrigin " + currentPosOrigin);
         telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sr.getCurrentPosition()));
-        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMIN);
+        telemetry.addLine("CONSTANTS.SLIDEROTATEMIN : " + org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN);
         telemetry.addLine("completed: " + completed);
         telemetry.update();
     }
@@ -277,8 +277,8 @@ public class Teleop extends LinearOpMode {
         boolean completed = false;
         //Rotate slide to 90
         while (!completed && !isStopRequested()) {
-            SM.setPos(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX, 1);
-            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEROTATEMAX - 10;
+            SM.setPos(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX, 1);
+            completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX - 10;
         }
         //ensure slider stays at 90
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -288,11 +288,11 @@ public class Teleop extends LinearOpMode {
     private void expandSliderToTopBasket() {
         boolean completed = false;
         while (!completed && !isStopRequested()) {
-            SM.setPos2(org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
+            SM.setPos2(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
+            completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -311,10 +311,10 @@ public class Teleop extends LinearOpMode {
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));
-            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANTIONLOW);
+            telemetry.addLine("CONSTANTS.SLIDEEXPANTIONLOW : " + org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANTIONLOW);
             telemetry.addLine("completed: " + completed);
             telemetry.update();
-            completed = sc.getCurrentPosition() > org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.CONSTANTS.SLIDEEXPANTIONLOW - 10;
+            completed = sc.getCurrentPosition() > org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANTIONLOW - 10;
         }
         telemetry.addLine("currentTargetPos " + currentTargetPos);
         telemetry.addLine("currentPos " + currentPos);
