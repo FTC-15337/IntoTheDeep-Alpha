@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERDOWNMAXEXTENTION;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN;
 
@@ -180,6 +181,8 @@ public class  gamepad2Controls extends Thread{
                 }else if(gamepad2.dpad_down){
                     clawRotateServo2.setServoPosition(0.9);
                 }else{
+                    telemetry.addLine("setting servo position in GP2Controls");
+                    telemetry.update();
                     clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
                 }
 

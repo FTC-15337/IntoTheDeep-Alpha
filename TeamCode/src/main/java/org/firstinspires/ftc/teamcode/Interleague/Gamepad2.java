@@ -166,6 +166,8 @@ public class Gamepad2 extends Thread {
             } else if (gamepad2.dpad_down) {
                 clawRotateServo2.setServoPosition(0.9);
             } else {
+                telemetry.addLine("setting servo position in GP2");
+                telemetry.update();
                 clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
             }
 

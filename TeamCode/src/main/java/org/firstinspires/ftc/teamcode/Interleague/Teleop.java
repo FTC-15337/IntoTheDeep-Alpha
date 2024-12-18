@@ -49,7 +49,7 @@ public class Teleop extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-            telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+            //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
             //driver1 inits
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
@@ -62,6 +62,9 @@ public class Teleop extends LinearOpMode {
                     DcMotorSimple.Direction.REVERSE);
             driver.init(hardwareMap, telemetry, DriveModes.MecanumFeildOriented);
             //driver2 inits
+
+        telemetry.addLine("inside runOp");
+        telemetry.update();
 
         clawServo.init(hardwareMap, "cs");
         clawRotateServo.init(hardwareMap, "crs");
@@ -84,23 +87,25 @@ public class Teleop extends LinearOpMode {
             //lighting.init(this);
 
             //Thread inits
-            gampad1Thread.init(this);
+            /*gampad1Thread.init(this);
             gamepad2Thread.init(this);
             gampad1Thread.add2Controls();
             gampad1Thread.start();
-            gamepad2Thread.start();
+            gamepad2Thread.start();*/
 
-        telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
-        telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+        //telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
+        //telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+        //telemetry.addData("Claw Servo pos" , clawServo.getServoPosition());
 
-        telemetry.addLine("Positions set in TeleOp.Java");
-        clawRotateServo.setServoPosition(1);
-        clawRotateServo2.setServoPosition(1);
-        clawServo.setServoPosition(1);
+        //telemetry.addLine("Positions set in TeleOp.Java");
 
-        telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
-        telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+        clawRotateServo2.setServoPosition(0.2);
 
+        //telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
+        //telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
+        //telemetry.addData("Claw Servo pos" , clawServo.getSe`rvoPosition());
+
+        telemetry.update();
             waitForStart();
 
             //lighting.start();

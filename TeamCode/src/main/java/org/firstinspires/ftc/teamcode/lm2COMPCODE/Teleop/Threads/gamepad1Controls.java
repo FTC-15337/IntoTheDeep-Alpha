@@ -26,11 +26,11 @@ public class gamepad1Controls extends Thread{
 
     }
     public void add2Controls(){
-        this.controller2 = mainFile.gamepad2Thread;
+        //this.controller2 = mainFile.gamepad2Thread;
     }
     public void run(){
         try{
-            //mainFile.telemetry.addLine("Inside Run of GP1");
+            mainFile.telemetry.addLine("Inside Run of GP1");
 
             while(!mainFile.isStarted()){}
             while(running && !mainFile.isStopRequested()){
@@ -64,7 +64,7 @@ public class gamepad1Controls extends Thread{
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
             mainFile.telemetry.addData("error in GC1", String.valueOf(e));
-            //mainFile.telemetry.addLine(String.valueOf(e));
+            mainFile.telemetry.addLine(String.valueOf(e));
             mainFile.gamepad2Thread.start();
         }
     }
