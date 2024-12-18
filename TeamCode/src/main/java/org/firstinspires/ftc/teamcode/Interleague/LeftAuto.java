@@ -91,12 +91,39 @@ public class LeftAuto extends LinearOpMode {
 
         //Module 1:
 
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); // expand slider
+        sleep(50); // wait for 0.5 secs
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST); // rotate claw down
         sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); // close claw
         sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // retract slider
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX); // rotate slider
+        sleep(50);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); // expand slider
+        sleep(50);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); // drop claw back
+        sleep(50);
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); // rotate claw to basket
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); // close claw
+        sleep(50);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST); // drop claw in front
+        sleep(50);
+        clawRotateServo2.setServoPosition(CONSTANTS.CLAWSTARTPOS); // rotate claw to start pos
+        sleep(50);
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN); // rotate slider down
+        sleep(50);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); // drop claw back
+        sleep(50);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // retract slider
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
+
+
 
     }
 }
