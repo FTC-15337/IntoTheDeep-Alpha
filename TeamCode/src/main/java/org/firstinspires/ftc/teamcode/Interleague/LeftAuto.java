@@ -51,19 +51,19 @@ public class LeftAuto extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        SM.init(sc,sr);
+        SM.init(sc, sr);
 
-        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
+        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP);
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
         driver.change(imu);
-        driver.change("RFM","RBM","LFM","LBM");
+        driver.change("RFM", "RBM", "LFM", "LBM");
         driver.change(DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
-        autoDriver.init(hardwareMap,driver);
+        driver.init(hardwareMap, telemetry, DriveModes.MecanumRobotOriented);
+        autoDriver.init(hardwareMap, driver);
         autoDriver.enableTurn(this);
 
         //POSITIONS
@@ -76,22 +76,17 @@ public class LeftAuto extends LinearOpMode {
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
          */
 
-        int DropPos  = autoDriver.lineTo(-300,400,1.0);
-        int pickup1  = autoDriver.lineTo(-675,240,1.0);
-        int DropPos2 = autoDriver.lineTo(-300,400,1.0);
-        int pickup2  = autoDriver.lineTo(-100,100,1.0);
-        int DropPos3 = autoDriver.lineTo(-100,100,1.0);
-        int pickup3  = autoDriver.lineTo(-100,100,1.0);
-        int DropPos4 = autoDriver.lineTo(-100,100,1.0);
+        int DropPos = autoDriver.lineTo(-300, 400, 1.0);
+        int pickup1 = autoDriver.lineTo(-675, 240, 1.0);
+        int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
+        int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
+        int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
+        int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
+        int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
 
         waitForStart();
 
         //Preload:
-
-
-
-
-
 
 
         //Module 1:
@@ -102,6 +97,9 @@ public class LeftAuto extends LinearOpMode {
         sleep(50);
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
+
+    }
+}
 
 
 
