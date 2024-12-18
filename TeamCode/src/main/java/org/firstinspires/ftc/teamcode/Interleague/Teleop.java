@@ -93,9 +93,11 @@ public class Teleop extends LinearOpMode {
 
             waitForStart();
 
-            clawRotateServo2.setServoPosition(CONSTANTS.CLAWSTARTPOS);
+            if(gamepad2Thread.running)
+            {
+                clawRotateServo2.setServoPosition(CONSTANTS.CLAWSTARTPOS);
+            }
 
-            telemetry.addData("Claw rotate position is" , clawRotateServo2.getServoPosition());
 
 
 
