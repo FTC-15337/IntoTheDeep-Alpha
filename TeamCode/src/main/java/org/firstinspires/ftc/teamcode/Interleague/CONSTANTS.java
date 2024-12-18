@@ -5,6 +5,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 
 //@Config(value = "autoDONTCHANGE")
 public class CONSTANTS {
+        public static final double SERVOROTATETOHIGHBASKET = 0.5;
         public static double SERVOROTATELOWESTDELETE = 0.05;
         public static double SERVOROTATELOWEST = 0.05;
         public static double SERVOROTATELOW = 0.15;
