@@ -106,7 +106,6 @@ public class LeftAuto extends LinearOpMode {
         SM.setPos(CONSTANTS.SLIDEROTATEMIN);
 
 
-
         //Module 1:
 
         SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); // expand slider
@@ -141,9 +140,16 @@ public class LeftAuto extends LinearOpMode {
         sleep(50);
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
 
+    }
 
-
-
+    public void safeWaitSeconds ( double time)
+    {
+        ElapsedTime timer = new ElapsedTime(MILLISECONDS);
+        timer.reset();
+        while (!isStopRequested() && timer.time() < time) {
+        }
+    }
+}
 
 
 
@@ -298,11 +304,7 @@ public class LeftAuto extends LinearOpMode {
 
     }
 
-    public void safeWaitSeconds(double time) {
-        ElapsedTime timer = new ElapsedTime(MILLISECONDS);
-        timer.reset();
-        while (!isStopRequested() && timer.time() < time) {
-        }
+
     }
 }
-} */}}
+} */
