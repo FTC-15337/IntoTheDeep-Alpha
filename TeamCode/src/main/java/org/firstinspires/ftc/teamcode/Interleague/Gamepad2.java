@@ -101,7 +101,7 @@ public class Gamepad2 extends Thread {
 
 
                 //Revised code for the driver 2 automation
-                while (gamepad2.right_trigger >= 0.3 && (!gamepad2.back)) {
+               /* while (gamepad2.right_trigger >= 0.3 && (!gamepad2.back)) {
 
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
 
@@ -117,7 +117,7 @@ public class Gamepad2 extends Thread {
 
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN);
                 }
-
+                    */
                 if (-gamepad2.right_stick_y <= -0.3 && !gamepad2.back) {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.5);
@@ -158,7 +158,7 @@ public class Gamepad2 extends Thread {
             }
 
             if (gamepad2.dpad_left) {
-                clawRotateServo2.setServoPosition(0.8);
+                clawRotateServo2.setServoPosition(0.2);
             } else if (gamepad2.dpad_right) {
                 clawRotateServo2.setServoPosition(0.3);
             } else if (gamepad2.dpad_up) {

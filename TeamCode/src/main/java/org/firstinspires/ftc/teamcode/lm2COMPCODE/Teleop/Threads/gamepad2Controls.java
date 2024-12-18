@@ -82,7 +82,7 @@ public class  gamepad2Controls extends Thread{
                 //SM.move(-gamepad2.left_stick_y);
                 if(gamepad2.right_trigger >= 0.3){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+                   // clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                     mainFile.safeWaitMilliseconds(500);
                     times += 1;
                     int finalpos = autoDriver.lineTo(times,0,0);
@@ -91,6 +91,8 @@ public class  gamepad2Controls extends Thread{
                     while(!completed && !mainFile.isStopRequested() && bypassEnabled){
                         completed = autoDriver.move(humanpos);
                     }
+
+
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                     clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
                     mainFile.safeWaitMilliseconds(500);
@@ -110,38 +112,6 @@ public class  gamepad2Controls extends Thread{
                 {
                     mainFile.dropSampleToHighBasket();
                 }
-                // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
-                // The code below is used for bringing everything to it's original position:
-                /*while(gamepad2.right_trigger >= 0.3 && !(gamepad2.back))
-                {
-                    //mainFile.safeWaitSeconds(50);
-
-                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-
-                    mainFile.safeWaitSeconds(50);
-
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
-
-                    mainFile.safeWaitSeconds(50);
-
-                    SM.setPos2(CONSTANTS.SLIDEEXPANTIONLOW,1);
-
-                    while (sc.getCurrentPosition() > CONSTANTS.SLIDEEXPANTIONLOW+10){}
-
-                    mainFile.safeWaitSeconds(50);
-
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
-
-                    mainFile.safeWaitSeconds(50);
-
-                    SM.setPos(CONSTANTS.SLIDEROTATEMIN,1);
-
-                    while (sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMIN+10){}
-
-                    sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                }*/ // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
-
-
 
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -164,16 +134,20 @@ public class  gamepad2Controls extends Thread{
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                 }
                 if(gamepad2.x) {
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+                    mainFile.telemetry.addData("Value of claw", String.valueOf(clawRotateServo.getServoPosition()));
                 }
-                if(gamepad2.right_bumper){
-                    clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+                if(gamepad2.right_bumper){ // close
+                    //clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+                    mainFile.telemetry.addLine("Rt Bumper clicked");
+                    clawRotateServo.setServoPosition(-0.5);
                 }
-                if(gamepad2.left_bumper) {
-                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+                if(gamepad2.left_bumper) { //open
+                    //clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+                    mainFile.telemetry.addLine("left clicked");
+                    clawRotateServo.setServoPosition(0);
                 }
                 if(gamepad2.dpad_left){
-                    clawRotateServo2.setServoPosition(0.8);
+                    clawRotateServo2.setServoPosition(0.7); //This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
                 }else if(gamepad2.dpad_right){
                     clawRotateServo2.setServoPosition(0.3);
                 }else if(gamepad2.dpad_up){
