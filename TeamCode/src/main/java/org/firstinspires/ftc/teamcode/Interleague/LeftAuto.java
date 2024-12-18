@@ -86,7 +86,25 @@ public class LeftAuto extends LinearOpMode {
 
         waitForStart();
 
-        //Preload:
+        //Preload Gahan:
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
+        sleep(25);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        sleep(50);
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT90); //SERVOROTATE2LEFT90 is a dummy value
+        sleep(25);
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        sleep(25);
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+
 
 
         //Module 1:
@@ -97,9 +115,6 @@ public class LeftAuto extends LinearOpMode {
         sleep(50);
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
-
-    }
-}
 
 
 
@@ -263,4 +278,4 @@ public class LeftAuto extends LinearOpMode {
         }
     }
 }
-*/
+} */}}
