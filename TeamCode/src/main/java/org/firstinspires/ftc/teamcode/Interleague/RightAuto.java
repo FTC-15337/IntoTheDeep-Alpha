@@ -86,6 +86,7 @@ public class RightAuto extends LinearOpMode
         int PushSampleSecondTime = autoDriver.lineTo(-100, 100,  1.0);
         int leftToRung = autoDriver.lineTo(-100, 100, 1.0);
         int backToRung = autoDriver.lineTo(-100, 100, 1.0);
+        int goOutOfHPZone = autoDriver.lineTo(-100, 100, 1.0);
 
         //Module 1
 
@@ -114,9 +115,10 @@ public class RightAuto extends LinearOpMode
 
         autoDriver.move(PushSample); //Push the sample
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE); //Make servo 0 degrees
+        autoDriver.move(goOutOfHPZone);
         autoDriver.move(GoToHP); //Go to HP
         sleep(200);
-        SM.setPos(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //Slider moves out
         sleep(200);
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //Claw picks up specimen
         clawServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
