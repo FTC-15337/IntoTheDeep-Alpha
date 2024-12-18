@@ -87,11 +87,11 @@ public class Teleop extends LinearOpMode {
             //lighting.init(this);
 
             //Thread inits
-            /*gampad1Thread.init(this);
+            gampad1Thread.init(this);
             gamepad2Thread.init(this);
             gampad1Thread.add2Controls();
             gampad1Thread.start();
-            gamepad2Thread.start();*/
+            gamepad2Thread.start();
 
         //telemetry.addData("Claw servo pos" , clawRotateServo.getServoPosition());
         //telemetry.addData("Rotate servo pos" , clawRotateServo2.getServoPosition());
