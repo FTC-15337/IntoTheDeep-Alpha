@@ -134,17 +134,16 @@ public class  gamepad2Controls extends Thread{
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                 }
                 if(gamepad2.x) {
-                    mainFile.telemetry.addData("Value of claw", String.valueOf(clawRotateServo.getServoPosition()));
+                    //mainFile.telemetry.addData("Value of claw is", clawRotateServo.getServoPosition())
+                    clawRotateServo.setServoPosition(0.7);
                 }
                 if(gamepad2.right_bumper){ // close
-                    //clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
-                    mainFile.telemetry.addLine("Rt Bumper clicked");
-                    clawRotateServo.setServoPosition(-0.5);
+                    clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+
                 }
                 if(gamepad2.left_bumper) { //open
-                    //clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-                    mainFile.telemetry.addLine("left clicked");
-                    clawRotateServo.setServoPosition(0);
+                    clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+
                 }
                 if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.7); //This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
@@ -164,7 +163,7 @@ public class  gamepad2Controls extends Thread{
         }catch(Exception e){
             mainFile.telemetry.addLine("ERROR");
             //mainFile.telemetry.addLine(String.valueOf(e));
-            mainFile.telemetry.addData("error in GC2", String.valueOf(e));
+            mainFile.telemetry.addData("error in Gamepad 2 controls", String.valueOf(e));
 
         }
     }
