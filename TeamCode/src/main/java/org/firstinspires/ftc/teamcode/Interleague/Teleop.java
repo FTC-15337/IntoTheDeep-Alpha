@@ -90,14 +90,13 @@ public class Teleop extends LinearOpMode {
             gampad1Thread.start();
             gamepad2Thread.start();
 
+        //telemetry.addLine("Positions set in TeleOp.Java");
+        //clawRotateServo.setServoPosition(1);
+        //clawRotateServo2.setServoPosition(0.0);
+        //clawServo.setServoPosition(1);
+
 
             waitForStart();
-
-            if(gamepad2Thread.running)
-            {
-                clawRotateServo2.setServoPosition(CONSTANTS.CLAWSTARTPOS);
-            }
-
 
 
 
@@ -115,7 +114,7 @@ public class Teleop extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        telemetry.addLine("Reset in TeleOp.Java");
+        //telemetry.addLine("Reset in TeleOp.Java");
 
         imu.resetYaw();
     }

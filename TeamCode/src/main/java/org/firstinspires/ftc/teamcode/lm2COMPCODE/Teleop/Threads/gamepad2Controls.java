@@ -72,17 +72,8 @@ public class  gamepad2Controls extends Thread{
                 }
 
 
-
-                /*if(gamepad2.left_trigger > 0.1){
-                    SM.setPos2(180 , 1);
-                }
-                if(gamepad2.right_trigger > 0.1){
-                    SM.setPos2(0 , -1);
-                }*/
-                //SM.move(-gamepad2.left_stick_y);
                 if(gamepad2.right_trigger >= 0.3){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-                   // clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
                     mainFile.safeWaitMilliseconds(500);
                     times += 1;
                     int finalpos = autoDriver.lineTo(times,0,0);
@@ -101,13 +92,11 @@ public class  gamepad2Controls extends Thread{
                         completed = autoDriver.move(humanpos);
                     }
                 }
-                //mainFile.telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
 
                 if(gamepad2.left_trigger >= 0.3){
                     mainFile.dropSampleToHighBasket();
                 }
                 // The code below is used for raising everything
-                // THIS IS CAUSING battery to decrease way to much needs to be revisited DO NOT ENABLE THIS CODE
                 while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
                 {
                     mainFile.dropSampleToHighBasket();
@@ -125,16 +114,19 @@ public class  gamepad2Controls extends Thread{
                     sr.setPower(0.01);
                 }
                 if(gamepad2.b) {
+                    mainFile.telemetry.addLine("B");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
                 if(gamepad2.a) {
+                    mainFile.telemetry.addLine("A");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
                 }
                 if(gamepad2.y) {
+                    mainFile.telemetry.addLine("Y");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                 }
                 if(gamepad2.x) {
-                    //mainFile.telemetry.addData("Value of claw is", clawRotateServo.getServoPosition())
+                    mainFile.telemetry.addData("Value of claw is", clawRotateServo.getServoPosition());
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
                 }
                 if(gamepad2.right_bumper){ // close
