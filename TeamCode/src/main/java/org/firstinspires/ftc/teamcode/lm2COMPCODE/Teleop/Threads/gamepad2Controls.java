@@ -135,7 +135,7 @@ public class  gamepad2Controls extends Thread{
                 }
                 if(gamepad2.x) {
                     //mainFile.telemetry.addData("Value of claw is", clawRotateServo.getServoPosition())
-                    clawRotateServo.setServoPosition(0.7);
+                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
                 }
                 if(gamepad2.right_bumper){ // close
                     clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
