@@ -51,39 +51,29 @@ public class LeftAuto extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        SM.init(sc, sr);
+        SM.init(sc,sr);
 
-        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP);
+        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
         driver.change(imu);
-        driver.change("RFM", "RBM", "LFM", "LBM");
+        driver.change("RFM","RBM","LFM","LBM");
         driver.change(DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap, telemetry, DriveModes.MecanumRobotOriented);
-        autoDriver.init(hardwareMap, driver);
+        driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
+        autoDriver.init(hardwareMap,driver);
         autoDriver.enableTurn(this);
 
         //POSITIONS
-        /*int DropPos  = autoDriver.lineTo(-300,400,1.0);
+        int DropPos  = autoDriver.lineTo(-300,400,1.0);
         int pickup1  = autoDriver.lineTo(-675,240,1.0);
         int DropPos2 = autoDriver.lineTo(-300,400,1.0);
         int pickup2  = autoDriver.lineTo(-100,100,1.0);
         int DropPos3 = autoDriver.lineTo(-100,100,1.0);
         int pickup3  = autoDriver.lineTo(-100,100,1.0);
         int DropPos4 = autoDriver.lineTo(-100,100,1.0);
-         */
-
-        int DropPos = autoDriver.lineTo(-300, 400, 1.0);
-        int pickup1 = autoDriver.lineTo(-675, 240, 1.0);
-        int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
-        int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
-        int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
-        int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
-        int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
-        int strafeTo2 = autoDriver.lineTo(-100, 100, 1.0);
 
         //if(clawServo.setServoPosition(CONSTANTS.SERVOCLOSE) {
            // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
@@ -91,108 +81,7 @@ public class LeftAuto extends LinearOpMode {
 
         waitForStart();
 
-        //Preload Gahan:
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX); //Slider pivots up
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
-        sleep(25); //wait for 1/4 of a second
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //Claw goes up
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); //servo2 rotates in a pos to high basket
-        sleep(50); //waits half a sec
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // claw opens
-        sleep(50); // waits half a sec
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //claw closes
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //servo goes low
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT90); // servo2 turns, SERVOROTATE2LEFT90 is a dummy value
-        sleep(25); //waits 1/4 of a second
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); //slider retracts
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //servo goes low
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
-        sleep(25); //waits 1/4 of a second
-        SM.setPos(CONSTANTS.SLIDEROTATEMIN); //slider pivots down
-
-
-        //Module 1:
-
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); // expand slider
-        sleep(50); // wait for 0.5 secs
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST); // rotate claw down
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); // close claw
-        sleep(50);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // retract slider
-        sleep(50);
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX); // rotate slider
-        sleep(50);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); // expand slider
-        sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); // drop claw back
-        sleep(50);
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); // rotate claw to basket
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); // close claw
-        sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST); // drop claw in front
-        sleep(50);
-        clawRotateServo2.setServoPosition(CONSTANTS.CLAWSTARTPOS); // rotate claw to start pos
-        sleep(50);
-        SM.setPos(CONSTANTS.SLIDEROTATEMIN); // rotate slider down
-        sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); // drop claw back
-        sleep(50);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // retract slider
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
-
-
-        //Mod 2 Gahan
-        autoDriver.move(strafeTo2); //strafe diagonal to get 2nd sample
-        sleep(25); //wait 1/4 second
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
-        sleep(25); //waits 1/4 seconds
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //claw goes low
-        sleep(10); //waits 1/10 of a second
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //claw closes
-        sleep(25); //waits 1/4 seconds
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //claw goes high
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); //slider retracts
-        sleep(25); //waits 1/4 seconds
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX); //slider pivots up
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
-        sleep(10); //waits 1/10
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); //servo turns to the basket
-        sleep(50); //waits half a second
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
-        sleep(10); //waits 1/10 of a second
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT45); //claw turns away from basket, SERVOROTATE2LEFT45 is a dummy value
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //claw drops
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // slider retracts
-        sleep(10); //waits 1/10 seconds
-        SM.setPos(CONSTANTS.SLIDEROTATEMIN); //slider pivots down
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //claw goes high
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
-
-
-
-
-
-
-
-    }
-
-    public void safeWaitSeconds ( double time)
-    {
-        ElapsedTime timer = new ElapsedTime(MILLISECONDS);
-        timer.reset();
-        while (!isStopRequested() && timer.time() < time) {
-        }
-    }
-}
-
-
-
-        /*clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
 
@@ -343,7 +232,10 @@ public class LeftAuto extends LinearOpMode {
 
     }
 
-
+    public void safeWaitSeconds(double time) {
+        ElapsedTime timer = new ElapsedTime(MILLISECONDS);
+        timer.reset();
+        while (!isStopRequested() && timer.time() < time) {
+        }
     }
 }
-} */

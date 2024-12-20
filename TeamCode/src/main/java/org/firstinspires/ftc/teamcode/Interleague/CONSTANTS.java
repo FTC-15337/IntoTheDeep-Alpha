@@ -10,7 +10,7 @@ public class CONSTANTS {
         public static double SERVOROTATELOWEST = 1.0;
         public static double SERVOROTATELOW = 0.9;
         public static double SERVOROTATEMIDDLE = 0.6;
-        public static double SERVOROTATEHIGH = 0.4;
+        public static double SERVOROTATEHIGH = 0.6;
         public static double SERVOOPEN = 1.0;
         public static double SERVOCLOSE = 0.6;
         public static double SERVOROTATE2LEFT90 = 0.7;
@@ -21,7 +21,7 @@ public class CONSTANTS {
         public static double CLAWSTARTPOS = 0.7;
 
 
-        public static int SLIDEEXPANSTIONMAX = -3000 ;
+        public static int SLIDEEXPANSTIONMAX = -2100 ;
         public static int SLIDEEXPANSTIONLOW = 1;
         public static int SLIDEHIGHCHAMBER = 1000;
 
@@ -33,7 +33,7 @@ public class CONSTANTS {
 
         public static int SLIDEEXPANTIONLOW = 0;
         public static int SLIDERDOWNMAXEXTENTION = 1500;
-        public static int SLIDEVERTICALMAX = -50;
+        public static int SLIDEVERTICALMAX = -1200;
         public static int SLIDEVERTICALMIN = 0;
 
 

@@ -80,8 +80,8 @@ public class Teleop extends LinearOpMode {
             SM.init(sc, sr);
 
             //LEDS
-            //bottomLed = hardwareMap.get(Servo.class, "RGBLED");
-            //lighting.init(this);
+            bottomLed = hardwareMap.get(Servo.class, "RGBLED");
+            lighting.init(this);
 
             //Thread inits
             gampad1Thread.init(this);
@@ -89,12 +89,6 @@ public class Teleop extends LinearOpMode {
             gampad1Thread.add2Controls();
             gampad1Thread.start();
             gamepad2Thread.start();
-
-        //telemetry.addLine("Positions set in TeleOp.Java");
-        //clawRotateServo.setServoPosition(1);
-        //clawRotateServo2.setServoPosition(0.0);
-        //clawServo.setServoPosition(1);
-
 
             waitForStart();
 
@@ -303,7 +297,6 @@ public class Teleop extends LinearOpMode {
             SM.setPos(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX, 1);
             completed = sr.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX + 10 && sr.getCurrentPosition() > org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX - 10;
         }
-        //ensure slider stays at 90
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setPower(0.1); // TODO: increase if it does not hold at 90
     }
@@ -312,9 +305,6 @@ public class Teleop extends LinearOpMode {
         boolean completed = false;
         while (!completed && !isStopRequested()) {
             SM.setPos2(org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX, 1);
-            //telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
-            //telemetry.update();
-            // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
             completed = sc.getCurrentPosition() < org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEEXPANSTIONMAX + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
