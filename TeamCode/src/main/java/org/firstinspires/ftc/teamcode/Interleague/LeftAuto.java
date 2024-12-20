@@ -83,27 +83,28 @@ public class LeftAuto extends LinearOpMode {
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
         int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
+        int strafeTo2 = autoDriver.lineTo(-100, 100, 1.0);
 
         waitForStart();
 
         //Preload Gahan:
-        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
-        sleep(25);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET);
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-        sleep(50);
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
-        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT90); //SERVOROTATE2LEFT90 is a dummy value
-        sleep(25);
-        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-        sleep(25);
-        SM.setPos(CONSTANTS.SLIDEROTATEMIN);
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX); //Slider pivots up
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
+        sleep(25); //wait for 1/4 of a second
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //Claw goes up
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); //servo2 rotates in a pos to high basket
+        sleep(50); //waits half a sec
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // claw opens
+        sleep(50); // waits half a sec
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //claw closes
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //servo goes low
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT90); // servo2 turns, SERVOROTATE2LEFT90 is a dummy value
+        sleep(25); //waits 1/4 of a second
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); //slider retracts
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //servo goes low
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
+        sleep(25); //waits 1/4 of a second
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN); //slider pivots down
 
 
         //Module 1:
@@ -139,6 +140,40 @@ public class LeftAuto extends LinearOpMode {
         SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // retract slider
         sleep(50);
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN); // open claw
+
+
+        //Mod 2 Gahan
+        autoDriver.move(strafeTo2); //strafe diagonal to get 2nd sample
+        sleep(25); //wait 1/4 second
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
+        sleep(25); //waits 1/4 seconds
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //claw goes low
+        sleep(10); //waits 1/10 of a second
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE); //claw closes
+        sleep(25); //waits 1/4 seconds
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //claw goes high
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); //slider retracts
+        sleep(25); //waits 1/4 seconds
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX); //slider pivots up
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX); //slider extends
+        sleep(10); //waits 1/10
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATETOHIGHBASKET); //servo turns to the basket
+        sleep(50); //waits half a second
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
+        sleep(10); //waits 1/10 of a second
+        clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2LEFT45); //claw turns away from basket, SERVOROTATE2LEFT45 is a dummy value
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW); //claw drops
+        SM.setPos2(CONSTANTS.SLIDEEXPANSTIONLOW); // slider retracts
+        sleep(10); //waits 1/10 seconds
+        SM.setPos(CONSTANTS.SLIDEROTATEMIN); //slider pivots down
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH); //claw goes high
+        clawServo.setServoPosition(CONSTANTS.SERVOOPEN); //claw opens
+
+
+
+
+
+
 
     }
 
