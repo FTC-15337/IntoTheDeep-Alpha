@@ -85,6 +85,10 @@ public class LeftAuto extends LinearOpMode {
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
         int strafeTo2 = autoDriver.lineTo(-100, 100, 1.0);
 
+        //if(clawServo.setServoPosition(CONSTANTS.SERVOCLOSE) {
+           // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
+        //}
+
         waitForStart();
 
         //Preload Gahan:

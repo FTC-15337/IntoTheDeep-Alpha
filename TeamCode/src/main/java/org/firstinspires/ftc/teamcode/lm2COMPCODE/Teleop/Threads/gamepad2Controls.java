@@ -143,11 +143,11 @@ public class  gamepad2Controls extends Thread{
                 if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.7);//This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
                 }else if(gamepad2.dpad_right){
-                    clawRotateServo2.setServoPosition(0.3);
-                }else if(gamepad2.dpad_up){
-                    clawRotateServo2.setServoPosition(0.1);
-                }else if(gamepad2.dpad_down){
-                    clawRotateServo2.setServoPosition(0.9);
+                    clawRotateServo2.setServoPosition(0.2);
+                }//else if(gamepad2.dpad_up){
+                    //clawRotateServo2.setServoPosition(0.1);
+                }//else if(gamepad2.dpad_down){
+                    //clawRotateServo2.setServoPosition(0.9);
                 }else{
                     //telemetry.addLine("setting servo position in GP2Controls");
                     //telemetry.update();
