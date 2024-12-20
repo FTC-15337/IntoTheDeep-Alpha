@@ -21,7 +21,7 @@ public class CONSTANTS {
         public static double CLAWSTARTPOS = 0.7;
 
 
-        public static int SLIDEEXPANSTIONMAX = -2100;
+        public static int SLIDEEXPANSTIONMAX = -3000;
         public static int SLIDEEXPANSTIONLOW = 1;
         public static int SLIDEHIGHCHAMBER = 1000;
 
@@ -32,9 +32,9 @@ public class CONSTANTS {
         public static RevHubOrientationOnRobot.UsbFacingDirection usDirection = RevHubOrientationOnRobot.UsbFacingDirection.UP;
 
         public static int SLIDEEXPANTIONLOW = 0;
-        public static int SLIDERDOWNMAXEXTENTION = 900;
-        public static int SLIDEVERTICALMAX = 1500;
-        public static int SLIDEVERTICALMIN = 0;
+        public static int SLIDERDOWNMAXEXTENTION = 1500;
+        //public static int SLIDEVERTICALMAX = 1500;
+        //public static int SLIDEVERTICALMIN = 0;
 
 
 
