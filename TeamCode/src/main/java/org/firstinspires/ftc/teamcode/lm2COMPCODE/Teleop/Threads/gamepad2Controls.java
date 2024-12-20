@@ -13,6 +13,8 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 import org.firstinspires.ftc.teamcode.Interleague.Teleop;
 
+
+
 //import javax.swing.JSlider;
 
 public class  gamepad2Controls extends Thread{
@@ -104,15 +106,15 @@ public class  gamepad2Controls extends Thread{
 
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
-                    SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.5);
+                    SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.2);
                 }
                 if(-gamepad2.right_stick_y >= 0.3 && !gamepad2.back){
-                    SM.setPos(CONSTANTS.SLIDEROTATEMAX, 0.5);
+                    SM.setPos(CONSTANTS.SLIDEROTATEMAX, 0.3);
                 }
-                if(sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)){
+                /*if(sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)){
                     sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                     sr.setPower(0.01);
-                }
+                }*/
                 if(gamepad2.b) {
                     mainFile.telemetry.addLine("B");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
@@ -138,7 +140,7 @@ public class  gamepad2Controls extends Thread{
 
                 }
                 if(gamepad2.dpad_left){
-                    clawRotateServo2.setServoPosition(0.7); //This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
+                    clawRotateServo2.setServoPosition(0.7);//This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
                 }else if(gamepad2.dpad_right){
                     clawRotateServo2.setServoPosition(0.3);
                 }else if(gamepad2.dpad_up){

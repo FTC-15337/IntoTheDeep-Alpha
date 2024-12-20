@@ -274,12 +274,14 @@ public class FtcDashboard implements OpModeManagerImpl.Notifications {
             return addData(caption, String.format(format, args));
         }
 
+        //[MN]Why is this returning NULL
         @Override
         public Item addData(String caption, Object value) {
             currentPacket.put(caption, value);
             return null;
         }
 
+        //[MN]Why is this overriden?
         @Override
         public <T> Item addData(String caption, Func<T> valueProducer) {
             throw new UnsupportedOperationException();
@@ -343,6 +345,7 @@ public class FtcDashboard implements OpModeManagerImpl.Notifications {
             return null;
         }
 
+        //[MN]Why is this returning NULL
         @Override
         public Line addLine(String lineCaption) {
             currentPacket.addLine(lineCaption);
