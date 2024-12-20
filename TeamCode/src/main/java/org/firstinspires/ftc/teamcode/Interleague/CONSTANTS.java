@@ -33,7 +33,7 @@ public class CONSTANTS {
 
         public static int SLIDEEXPANTIONLOW = 0;
         public static int SLIDERDOWNMAXEXTENTION = 1500;
-        public static int SLIDEVERTICALMAX = 1000;
+        public static int SLIDEVERTICALMAX = -50;
         public static int SLIDEVERTICALMIN = 0;
 
 
