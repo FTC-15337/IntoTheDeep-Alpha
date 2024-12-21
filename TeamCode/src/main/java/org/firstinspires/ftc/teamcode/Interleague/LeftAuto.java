@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
-@Autonomous(name="left auto")
+@Autonomous(name="left auto Interleague")
 public class LeftAuto extends LinearOpMode {
     public Lights lighting = new Lights();
     public Servo bottomLed;
@@ -51,56 +51,64 @@ public class LeftAuto extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        SM.init(sc,sr);
+        SM.init(sc, sr);
 
-        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,RevHubOrientationOnRobot.UsbFacingDirection.UP);
+        RevHubOrientationOnRobot orientation = new RevHubOrientationOnRobot(RevHubOrientationOnRobot.LogoFacingDirection.RIGHT, RevHubOrientationOnRobot.UsbFacingDirection.UP);
         imu = hardwareMap.get(IMU.class, "imu");
         imu.initialize(new IMU.Parameters(orientation));
         driver.change(imu);
-        driver.change("RFM","RBM","LFM","LBM");
+        driver.change("RFM", "RBM", "LFM", "LBM");
         driver.change(DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.FORWARD,
                 DcMotorSimple.Direction.REVERSE);
-        driver.init(hardwareMap,telemetry, DriveModes.MecanumRobotOriented);
-        autoDriver.init(hardwareMap,driver);
+        driver.init(hardwareMap, telemetry, DriveModes.MecanumRobotOriented);
+        autoDriver.init(hardwareMap, driver);
         autoDriver.enableTurn(this);
 
         //POSITIONS
-        int DropPos  = autoDriver.lineTo(-300,400,1.0);
-        int pickup1  = autoDriver.lineTo(-675,240,1.0);
-        int DropPos2 = autoDriver.lineTo(-300,400,1.0);
-        int pickup2  = autoDriver.lineTo(-100,100,1.0);
-        int DropPos3 = autoDriver.lineTo(-100,100,1.0);
-        int pickup3  = autoDriver.lineTo(-100,100,1.0);
-        int DropPos4 = autoDriver.lineTo(-100,100,1.0);
+        int DropPos = autoDriver.lineTo(-300 /*Used to be -300*/,350 , 1.0);
+        int pickup1 = autoDriver.lineTo(-675, 240, 1.0);
+        int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
+        int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
+        int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
+        int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
+        int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
 
         //if(clawServo.setServoPosition(CONSTANTS.SERVOCLOSE) {
-           // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
+        // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
         //}
 
         waitForStart();
-
+        //Set servo positions
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
 
         boolean completed = false;
-        while(!completed && !isStopRequested()){
+        while (!completed && !isStopRequested()) {
             completed = autoDriver.move(DropPos);
         }
+        //Rotate
         autoDriver.turnAngle(-45);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         dropSampleToHighBasket();
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         // wait to finish
         safeWaitSeconds(500);
-        autoDriver.turnAngle(0);
+        autoDriver.turnAngle(0); //Turn straight
+        //Open claw
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         safeWaitSeconds(500);
         completed = false;
-        while(!completed && !isStopRequested()){
-            completed = autoDriver.move(pickup1);
-        }
+        //while(!completed && !isStopRequested()){
+            //completed = autoDriver.move(pickup1);
+        //}
+        //Claw go down
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
+        //Extend slider to sample
+        SM.setPos(CONSTANTS.SLIDEROTATEMAX);
+        //Pick up the sample
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         safeWaitSeconds(500);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
@@ -115,15 +123,15 @@ public class LeftAuto extends LinearOpMode {
 
 
         while(!isStopRequested()){
-            telemetry.addLine("DONE");
+            telemetry.addLine("AUTO IS DONE");
             telemetry.update();
         }
     }
 
+    //DO NOT COMMENT THIS
     public void dropSampleToHighBasket() {
         rotateSliderTo90DegreeAngle();
         // set claw rotation to be parallel to slider
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         // wait to finish
         safeWaitSeconds(100);
         // expand slider to maximum
@@ -131,23 +139,21 @@ public class LeftAuto extends LinearOpMode {
         // drop the sample
         dropSampleActionsForClaw();
         // retract the slider back
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         retractSlider();
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         safeWaitSeconds(100);
         // rotate slider to down position
         rotateSliderToDownPosition();
     }
     private void dropSampleActionsForClaw() {
         // Rotate claw to drop angle
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        // wait until claw is positioned on the top basket drop position
-        safeWaitSeconds(500);
         // Open the claw
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         // wait until claw drops sample
         safeWaitSeconds(500);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
         // wait until claw rotation is completed
         safeWaitSeconds(500);
         // set claw to closed position
