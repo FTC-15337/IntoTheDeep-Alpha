@@ -68,7 +68,7 @@ public class LeftAuto extends LinearOpMode {
 
         //POSITIONS
         int DropPos = autoDriver.lineTo(-250 /*Used to be -300*/,350 , 1.0);
-        int pickup1 = autoDriver.lineTo(-630, 240, 1.0);
+        int pickup1 = autoDriver.lineTo(-630,/*used to be -630*//*used ti be 240*/ 220, 1.0);
         int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
         int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
@@ -90,6 +90,7 @@ public class LeftAuto extends LinearOpMode {
             completed = autoDriver.move(DropPos);
         }
         //Rotate
+        //Preload
         autoDriver.turnAngle(-45);
         //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         dropSampleToHighBasket();
@@ -104,19 +105,21 @@ public class LeftAuto extends LinearOpMode {
         }
         // fix the claw closing, rotating and picking up sample preset. Believe the problem is in the lines below:
         //Claw go down
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
+        sleep(50);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST + 0.1);
         //Extend slider to sample
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         //Pick up the sample
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         safeWaitSeconds(500);
         //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
-        safeWaitSeconds(500);
         completed = false;
         while(!completed && !isStopRequested()){
             completed = autoDriver.move(DropPos2);
         }
         autoDriver.turnAngle(-45);
+
         dropSampleToHighBasket();
         autoDriver.turnAngle(0);
 
