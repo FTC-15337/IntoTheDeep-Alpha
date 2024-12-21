@@ -67,8 +67,8 @@ public class LeftAuto extends LinearOpMode {
         autoDriver.enableTurn(this);
 
         //POSITIONS
-        int DropPos = autoDriver.lineTo(-300 /*Used to be -300*/,350 , 1.0);
-        int pickup1 = autoDriver.lineTo(-675, 240, 1.0);
+        int DropPos = autoDriver.lineTo(-250 /*Used to be -300*/,350 , 1.0);
+        int pickup1 = autoDriver.lineTo(-620, 240, 1.0);
         int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
         int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
@@ -91,19 +91,17 @@ public class LeftAuto extends LinearOpMode {
         }
         //Rotate
         autoDriver.turnAngle(-45);
-        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         dropSampleToHighBasket();
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         // wait to finish
         safeWaitSeconds(500);
         autoDriver.turnAngle(0); //Turn straight
-        //Open claw
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         safeWaitSeconds(500);
         completed = false;
-        //while(!completed && !isStopRequested()){
-            //completed = autoDriver.move(pickup1);
-        //}
+        while(!completed && !isStopRequested()){
+            completed = autoDriver.move(pickup1);
+        }
         //Claw go down
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
         //Extend slider to sample
@@ -111,7 +109,7 @@ public class LeftAuto extends LinearOpMode {
         //Pick up the sample
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         safeWaitSeconds(500);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         safeWaitSeconds(500);
         completed = false;
         while(!completed && !isStopRequested()){
@@ -139,21 +137,23 @@ public class LeftAuto extends LinearOpMode {
         // drop the sample
         dropSampleActionsForClaw();
         // retract the slider back
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         retractSlider();
         safeWaitSeconds(100);
         // rotate slider to down position
         rotateSliderToDownPosition();
     }
-    private void dropSampleActionsForClaw() {
+    private void dropSampleActionsForClaw()
+    {
         // Rotate claw to drop angle
         // Open the claw
+        safeWaitSeconds(1);
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         // wait until claw drops sample
         safeWaitSeconds(500);
         // Rotate claw back to parallel to slider
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
         // wait until claw rotation is completed
         safeWaitSeconds(500);
         // set claw to closed position

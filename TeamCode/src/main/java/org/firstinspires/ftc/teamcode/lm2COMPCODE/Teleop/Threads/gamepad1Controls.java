@@ -30,8 +30,6 @@ public class gamepad1Controls extends Thread{
     }
     public void run(){
         try{
-            mainFile.telemetry.addLine("Inside Run of GP1");
-
             while(!mainFile.isStarted()){}
             while(running && !mainFile.isStopRequested()){
                 SPED = gamepad1.right_trigger;
@@ -40,7 +38,10 @@ public class gamepad1Controls extends Thread{
                 }
                 bypassEnabled = gamepad1.back;
                 resetEnabled = gamepad1.start;
-                if(resetEnabled && controller2.resetEnabled){
+
+                if (gamepad1.a)
+                {
+                    mainFile.telemetry.addLine("Resetting called");
                     led.setPosition(0.28);
                     mainFile.safeWaitMilliseconds(100);
                     led.setPosition(0.0);
@@ -54,7 +55,10 @@ public class gamepad1Controls extends Thread{
                     led.setPosition(0.0);
                     mainFile.safeWaitMilliseconds(100);
                     mainFile.reset();
-                }else if(bypassEnabled && controller2.bypassEnabled){
+                }
+                if(resetEnabled && controller2.resetEnabled){}
+
+                    else if(bypassEnabled && controller2.bypassEnabled){
                     controller2.sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                     controller2.sr.setPower(controller2.gamepad2.right_stick_y);
                     controller2.sc.setPower(controller2.gamepad2.left_stick_y);

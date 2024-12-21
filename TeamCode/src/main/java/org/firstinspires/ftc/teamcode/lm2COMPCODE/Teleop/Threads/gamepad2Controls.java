@@ -44,12 +44,11 @@ public class  gamepad2Controls extends Thread{
         this.clawRotateServo2 = main.clawRotateServo2;
         this.autoDriver.init(main.hardwareMap,main.driver);
         times = 0;
-        mainFile.telemetry.addLine("Init of GP2C");
+        //mainFile.telemetry.addLine("Init of GP2C");
     }
 
     public void run(){
         try{
-            mainFile.telemetry.addLine("Run of GP2C");
             while(running && !mainFile.isStopRequested()){
                 bypassEnabled = gamepad2.back;
                 resetEnabled = gamepad2.start;
@@ -63,7 +62,7 @@ public class  gamepad2Controls extends Thread{
                             SM.move(1);
                         }else{
 
-                            SM.move(0.1);
+                           SM.move(0.1);
                         }
                     }else{
                         if(sc.getCurrentPosition() < -SLIDERDOWNMAXEXTENTION * 1 / 2){
@@ -117,24 +116,19 @@ public class  gamepad2Controls extends Thread{
                     sr.setPower(0.01);
                 }*/
                 if(gamepad2.b) {
-                    mainFile.telemetry.addLine("B");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
                 if(gamepad2.a) {
-                    mainFile.telemetry.addLine("A");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
                 }
                 if(gamepad2.y) {
-                    mainFile.telemetry.addLine("Y");
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
                 }
                 if(gamepad2.x) {
-                    mainFile.telemetry.addData("Value of claw is", clawRotateServo.getServoPosition());
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
                 }
                 if(gamepad2.right_bumper){ // close
                     clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
-
                 }
                 if(gamepad2.left_bumper) { //open
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
@@ -145,8 +139,6 @@ public class  gamepad2Controls extends Thread{
                 }else if(gamepad2.dpad_right){
                     clawRotateServo2.setServoPosition(0.2);
                 }else{
-                    //telemetry.addLine("setting servo position in GP2Controls");
-                    //telemetry.update();
                     clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
                 }
 
