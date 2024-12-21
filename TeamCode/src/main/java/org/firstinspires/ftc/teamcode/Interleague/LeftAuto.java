@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.Threads.Lights;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.AUTONOMOUS.packages.servoManger;
 
-@Autonomous(name="left auto Interleague")
+@Autonomous(name="Left auto Interleague (sample)")
 public class LeftAuto extends LinearOpMode {
     public Lights lighting = new Lights();
     public Servo bottomLed;
@@ -106,10 +106,12 @@ public class LeftAuto extends LinearOpMode {
         // fix the claw closing, rotating and picking up sample preset. Believe the problem is in the lines below:
         //Claw go down
         sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST - 0.1);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
+        safeWaitSeconds(1);
         //Extend slider to sample
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         //Pick up the sample
+        safeWaitSeconds(1);
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         safeWaitSeconds(500);

@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
 import java.util.Locale;
 
-@Autonomous(name  = "Right auto park")
+@Autonomous(name  = "Right auto Interleague (park)")
 public class RightAuto extends LinearOpMode {
     //public GoBildaPinpointDriver bottomLed;
     private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
