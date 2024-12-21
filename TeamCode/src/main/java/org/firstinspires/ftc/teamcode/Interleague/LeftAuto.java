@@ -106,7 +106,7 @@ public class LeftAuto extends LinearOpMode {
         // fix the claw closing, rotating and picking up sample preset. Believe the problem is in the lines below:
         //Claw go down
         sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST + 0.1);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST - 0.1);
         //Extend slider to sample
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         //Pick up the sample
