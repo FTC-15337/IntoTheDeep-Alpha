@@ -68,7 +68,7 @@ public class LeftAuto extends LinearOpMode {
 
         //POSITIONS
         int DropPos = autoDriver.lineTo(-250 /*Used to be -300*/,350 , 1.0);
-        int pickup1 = autoDriver.lineTo(-620, 240, 1.0);
+        int pickup1 = autoDriver.lineTo(-630, 240, 1.0);
         int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
         int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
@@ -91,9 +91,9 @@ public class LeftAuto extends LinearOpMode {
         }
         //Rotate
         autoDriver.turnAngle(-45);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         dropSampleToHighBasket();
-        clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
+        //clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
         // wait to finish
         safeWaitSeconds(500);
         autoDriver.turnAngle(0); //Turn straight
@@ -102,6 +102,7 @@ public class LeftAuto extends LinearOpMode {
         while(!completed && !isStopRequested()){
             completed = autoDriver.move(pickup1);
         }
+        // fix the claw closing, rotating and picking up sample preset. Believe the problem is in the lines below:
         //Claw go down
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
         //Extend slider to sample
@@ -135,6 +136,7 @@ public class LeftAuto extends LinearOpMode {
         // expand slider to maximum
         expandSliderToTopBasket();
         // drop the sample
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         dropSampleActionsForClaw();
         // retract the slider back
         //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -145,7 +147,7 @@ public class LeftAuto extends LinearOpMode {
     }
     private void dropSampleActionsForClaw()
     {
-        // Rotate claw to drop angle
+        // Rotate  claw to drop angle
         // Open the claw
         safeWaitSeconds(1);
         clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
@@ -153,11 +155,11 @@ public class LeftAuto extends LinearOpMode {
         // wait until claw drops sample
         safeWaitSeconds(500);
         // Rotate claw back to parallel to slider
-        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         // wait until claw rotation is completed
-        safeWaitSeconds(500);
+        //safeWaitSeconds(500);
         // set claw to closed position
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        //clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
     }
 
     private void rotateSliderToDownPosition() {
