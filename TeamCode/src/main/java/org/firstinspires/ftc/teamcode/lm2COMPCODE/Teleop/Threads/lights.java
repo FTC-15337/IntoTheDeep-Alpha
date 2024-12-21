@@ -75,7 +75,7 @@ public class lights extends Thread{
                     direction = -direction;
                     ledPos = minLedPos;
                 }
-                mainFile3.bottomLed.setPosition(ledPos);
+                //mainFile3.bottomLed.setPosition(ledPos);
             }
         }
     }

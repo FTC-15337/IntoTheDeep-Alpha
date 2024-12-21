@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Interleague;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
+import com.parshwa.drive.auto.GoBildaPinpointDriver;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
@@ -21,6 +22,7 @@ import java.util.Locale;
 
 @Autonomous(name  = "Right auto park")
 public class RightAuto extends LinearOpMode {
+    //public GoBildaPinpointDriver bottomLed;
     private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
     private Drive driver = new Drive();
 
