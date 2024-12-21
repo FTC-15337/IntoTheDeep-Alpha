@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.LM1;
+/*package org.firstinspires.ftc.teamcode.LM1;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
@@ -18,8 +18,8 @@ import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.SliderManger;
 import org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.packages.servoManger;
 
 import java.util.Locale;
-@Disabled
-@Autonomous(name = "disabled", preselectTeleOp = "teleop")
+
+@Autonomous(name  = "Right auto park")
 public class RIGHTAUTO extends LinearOpMode {
     private AutoDriverBetaV1 autoDriver = new AutoDriverBetaV1();
     private Drive driver = new Drive();
@@ -70,3 +70,4 @@ public class RIGHTAUTO extends LinearOpMode {
         }
     }
 }
+*/
