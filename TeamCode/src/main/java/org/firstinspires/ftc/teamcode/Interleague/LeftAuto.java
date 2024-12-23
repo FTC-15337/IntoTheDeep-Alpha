@@ -105,19 +105,23 @@ public class LeftAuto extends LinearOpMode {
         }
         // fix the claw closing, rotating and picking up sample preset. Believe the problem is in the lines below:
         //Claw go down
-        sleep(50);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOWEST);
-        safeWaitSeconds(1);
+        safeWaitSeconds(500);
+        clawRotateServo.setServoPosition(1);
+        safeWaitSeconds(500);
+        telemetry.addLine("Should close the claw");
+        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        telemetry.addLine("Should make the claw straight");
+        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
         //Extend slider to sample
         SM.setPos(CONSTANTS.SLIDEROTATEMAX);
         //Pick up the sample
-        safeWaitSeconds(1);
-        clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
-        clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
-        safeWaitSeconds(500);
+        //clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+        //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
+
         //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
         completed = false;
         while(!completed && !isStopRequested()){
+            safeWaitSeconds(500);
             completed = autoDriver.move(DropPos2);
         }
         autoDriver.turnAngle(-45);
