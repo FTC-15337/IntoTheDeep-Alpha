@@ -7,6 +7,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.parshwa.drive.tele.Drive;
 import com.parshwa.drive.tele.DriveModes;
+import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -68,18 +69,41 @@ public class LeftAuto extends LinearOpMode {
 
         //POSITIONS
         int DropPos = autoDriver.lineTo(-250 /*Used to be -300*/,350 , 1.0);
-        int pickup1 = autoDriver.lineTo(-630,/*used to be -630*//*used ti be 240*/ 220, 1.0);
+        int pickup1 = autoDriver.lineTo(-300, 800, 0.2);
         int DropPos2 = autoDriver.lineTo(-300, 400, 1.0);
         int pickup2 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
         int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
+        int test = autoDriver.lineTo(-100, 0, -1.0
+        );
 
         //if(clawServo.setServoPosition(CONSTANTS.SERVOCLOSE) {
         // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
         //}
 
         waitForStart();
+        autoDriver.move(test);
+        sleep(2000);
+        /*LLResult data = limelight.getTargetData();
+        if (data != null) {
+            double tx = data.getLLResult("tx").getdouble(0); //x offset
+            double ty = data.getLLResult("ty").getdouble(0); //y offset
+            double ta = data.getLLResult("ta").getdouble(0); //target area
+
+            telemetry.addData("tx", tx);
+            telemetry.addData("ty", ty);
+            telemetry.addData("ta", ta);
+            telemetry.update();
+
+            if (tx > 1.0) {
+                driver.setPower(0.2, -0.2);
+            } else if (tx < -0.1) {
+                driver.setPower(-0.2, 0.2);
+            } else {
+                driver.setPower(0,0);
+            }
+        }
         //Set servo positions
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -107,7 +131,7 @@ public class LeftAuto extends LinearOpMode {
         //Claw go down
         safeWaitSeconds(500);
         clawRotateServo.setServoPosition(1);
-        safeWaitSeconds(500);
+        safeWaitSeconds(1000);
         telemetry.addLine("Should close the claw");
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         telemetry.addLine("Should make the claw straight");
@@ -256,3 +280,4 @@ public class LeftAuto extends LinearOpMode {
         }
     }
 }
+*/}}

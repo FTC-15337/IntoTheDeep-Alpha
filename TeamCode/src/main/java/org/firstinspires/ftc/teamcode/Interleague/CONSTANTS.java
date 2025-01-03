@@ -9,8 +9,8 @@ public class CONSTANTS {
         public static double SERVOROTATELOWESTDELETE = 0.05;
         public static double SERVOROTATELOWEST = 1.0;
         public static double SERVOROTATELOW = 0.9;
-        public static double SERVOROTATEMIDDLE = 0.6;
-        public static double SERVOROTATEHIGH = 0.4;
+        public static double SERVOROTATEMIDDLE = 0.55;
+        public static double SERVOROTATEHIGH = 0.32;
         public static double SERVOOPEN = 1.0;
         public static double SERVOCLOSE = 0.6;
         public static double SERVOROTATE2LEFT90 = 0.7;
