@@ -75,16 +75,12 @@ public class LeftAuto extends LinearOpMode {
         int DropPos3 = autoDriver.lineTo(-100, 100, 1.0);
         int pickup3 = autoDriver.lineTo(-100, 100, 1.0);
         int DropPos4 = autoDriver.lineTo(-100, 100, 1.0);
-        int test = autoDriver.lineTo(-100, 0, -1.0
-        );
 
         //if(clawServo.setServoPosition(CONSTANTS.SERVOCLOSE) {
         // clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATE2MID);
         //}
 
         waitForStart();
-        autoDriver.move(test);
-        sleep(2000);
 
         //Set servo positions
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
