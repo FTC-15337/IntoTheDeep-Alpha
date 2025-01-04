@@ -85,25 +85,7 @@ public class LeftAuto extends LinearOpMode {
         waitForStart();
         autoDriver.move(test);
         sleep(2000);
-        /*LLResult data = limelight.getTargetData();
-        if (data != null) {
-            double tx = data.getLLResult("tx").getdouble(0); //x offset
-            double ty = data.getLLResult("ty").getdouble(0); //y offset
-            double ta = data.getLLResult("ta").getdouble(0); //target area
 
-            telemetry.addData("tx", tx);
-            telemetry.addData("ty", ty);
-            telemetry.addData("ta", ta);
-            telemetry.update();
-
-            if (tx > 1.0) {
-                driver.setPower(0.2, -0.2);
-            } else if (tx < -0.1) {
-                driver.setPower(-0.2, 0.2);
-            } else {
-                driver.setPower(0,0);
-            }
-        }
         //Set servo positions
         clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
         clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);
@@ -234,11 +216,11 @@ public class LeftAuto extends LinearOpMode {
     private void expandSliderToTopBasket() {
         boolean completed = false;
         while(!completed && !isStopRequested()){
-            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX, 1);
+            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX + 500, 1);
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 10;
+            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX + 500 + 10;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -280,4 +262,3 @@ public class LeftAuto extends LinearOpMode {
         }
     }
 }
-*/}}
