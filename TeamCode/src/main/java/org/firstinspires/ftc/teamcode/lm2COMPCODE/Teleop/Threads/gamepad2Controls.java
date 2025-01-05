@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERTOHIGHCHAMBER;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERDOWNMAXEXTENTION;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERTOHIGHCHAMBER;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -95,14 +97,6 @@ public class  gamepad2Controls extends Thread{
                     }
                 }
 
-                if(gamepad2.left_trigger >= 0.3){
-                    mainFile.dropSampleToHighBasket();
-                }
-                // The code below is used for raising everything
-                while(gamepad2.left_trigger >= 0.3 && !(gamepad2.back))
-                {
-                    mainFile.dropSampleToHighBasket();
-                }
 
                 if(-gamepad2.right_stick_y <= -0.3 && !gamepad2.back){
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEMIDDLE);

@@ -20,10 +20,9 @@ public class CONSTANTS {
         public static double SERVOROTATE2RIGHT90 = 0.5;
         public static double CLAWSTARTPOS = 0.7;
 
-
         public static int SLIDEEXPANSTIONMAX = -2100 ;
         public static int SLIDEEXPANSTIONLOW = 1;
-        public static int SLIDEHIGHCHAMBER = 1000;
+        public static int SLIDERTOHIGHCHAMBER = -1100;
 
         public static int SLIDEROTATEMAX = 685;
         public static int SLIDEROTATEMIN = 0;
