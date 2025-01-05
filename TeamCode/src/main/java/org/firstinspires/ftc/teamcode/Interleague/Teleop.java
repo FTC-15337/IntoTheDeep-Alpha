@@ -92,9 +92,7 @@ public class Teleop extends LinearOpMode {
 
             waitForStart();
 
-
-
-            //lighting.start();
+            lighting.start();
 
 
 

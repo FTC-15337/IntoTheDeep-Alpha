@@ -211,11 +211,11 @@ public class LeftAuto extends LinearOpMode {
     private void expandSliderToTopBasket() {
         boolean completed = false;
         while(!completed && !isStopRequested()){
-            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX + 1000, 1);
+            SM.setPos2(CONSTANTS.SLIDEEXPANSTIONMAX);
             telemetry.addLine(String.valueOf(sc.getCurrentPosition()));
             telemetry.update();
             // using negative of SLIDEEXPANSTIONMAX because "sc.getCurrentPosition()" returns negative when expanded
-            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX +1000 + 10;
+            completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX;
         }
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(-0.1);// TODO: increase if it does not hold slider at max expansion.
@@ -229,8 +229,6 @@ public class LeftAuto extends LinearOpMode {
         sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         sc.setPower(1);
         while(!completed && !isStopRequested()){
-            //SM.setPos2(-CONSTANTS.SLIDEEXPANTIONLOW, -1);
-            //sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             telemetry.addLine("currentTargetPos " + currentTargetPos);
             telemetry.addLine("currentPos " + currentPos);
             telemetry.addLine("sc.getCurrentPosition(): " + String.valueOf(sc.getCurrentPosition()));

@@ -54,6 +54,8 @@ public class  gamepad2Controls extends Thread{
 
     public void run(){
         try{
+            int A = 0;
+            int B = 0;
             while(running && !mainFile.isStopRequested()){
                 bypassEnabled = gamepad2.back;
                 resetEnabled = gamepad2.start;
@@ -65,7 +67,15 @@ public class  gamepad2Controls extends Thread{
                         }
                         else
                         {
-                            SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
+                            if (gamepad2.left_stick_y - 0.005 > 1.0)
+                            {
+                                SM.move(gamepad2.left_stick_y);
+                            }
+                            else
+                            {
+                                SM.move(gamepad2.left_stick_y - 0.005); // Org value is -0.05
+                            }
+                            //SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
                         }
                 }else
                 {
@@ -93,12 +103,10 @@ public class  gamepad2Controls extends Thread{
                     mainFile.safeWaitMilliseconds(1000);
                     while(!completed){
                         SM.setPos2(SLIDERTOHIGHCHAMBER, 1);
-                                //CONSTANTS.SLIDEEXPANSTIONMAX + 1000, 1);
-                        //completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX +1000 + 10;
                         completed = sc.getCurrentPosition() < SLIDERTOHIGHCHAMBER + 10;
                     }
                     sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
+                    sc.setPower(0.1);
 
                 }
                 if(gamepad2.right_trigger >= 0.3){
