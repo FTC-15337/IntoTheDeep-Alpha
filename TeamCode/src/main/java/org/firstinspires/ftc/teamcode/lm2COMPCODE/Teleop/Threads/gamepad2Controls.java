@@ -1,10 +1,13 @@
 package org.firstinspires.ftc.teamcode.lm2COMPCODE.Teleop.Threads;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMAX;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERTOHIGHCHAMBER;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERDOWNMAXEXTENTION;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEROTATEMIN;
 import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDERTOHIGHCHAMBER;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEVERTICALMAX;
+import static org.firstinspires.ftc.teamcode.Interleague.CONSTANTS.SLIDEVERTICALMIN;
 
 import com.parshwa.drive.auto.AutoDriverBetaV1;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -56,14 +59,21 @@ public class  gamepad2Controls extends Thread{
                 resetEnabled = gamepad2.start;
                 if(sc.getCurrentPosition() < -20 && sr.getCurrentPosition() > 600) {
                     // when slider is at 90 degree and expanded then it gets small bit of power to stay up
-                    SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
-                }else{
-                    if (sc.getCurrentPosition() < -SLIDERDOWNMAXEXTENTION && (sr.getCurrentPosition() > SLIDEROTATEMIN -10 && sr.getCurrentPosition() < SLIDEROTATEMIN +10) )
+                        if(sc.getCurrentPosition() < SLIDEVERTICALMAX) //This is to maintain a vertical limit
+                        {
+                            SM.move(0.0);
+                        }
+                        else
+                        {
+                            SM.move(gamepad2.left_stick_y - 0.05 > 1.0 ? gamepad2.left_stick_y : gamepad2.left_stick_y - 0.05);
+                        }
+                }else
+                {
+                    if (sc.getCurrentPosition() < -SLIDERDOWNMAXEXTENTION && (sr.getCurrentPosition() > SLIDEROTATEMIN -10 && sr.getCurrentPosition() < SLIDEROTATEMIN +10))
                     {
                         if(gamepad2.left_stick_y > 0.2){
                             SM.move(1);
                         }else{
-
                            SM.move(0.1);
                         }
                     }else{
@@ -75,9 +85,24 @@ public class  gamepad2Controls extends Thread{
                     }
                 }
 
+                if(gamepad2.left_trigger >= 0.3)
+                {
+                    boolean completed = false;
+                    clawRotateServo.setServoPosition(0.4);
+                    SM.setPos(CONSTANTS.SLIDEROTATEMAX,0.5);
+                    mainFile.safeWaitMilliseconds(1000);
+                    while(!completed){
+                        SM.setPos2(SLIDERTOHIGHCHAMBER, 1);
+                                //CONSTANTS.SLIDEEXPANSTIONMAX + 1000, 1);
+                        //completed = sc.getCurrentPosition() < CONSTANTS.SLIDEEXPANSTIONMAX +1000 + 10;
+                        completed = sc.getCurrentPosition() < SLIDERTOHIGHCHAMBER + 10;
+                    }
+                    sc.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                    sc.setPower(0.1);// TODO: increase if it does not hold slider at max expansion.
 
+                }
                 if(gamepad2.right_trigger >= 0.3){
-                    clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
+                    //clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATEHIGH);
                     mainFile.safeWaitMilliseconds(500);
                     times += 1;
                     int finalpos = autoDriver.lineTo(times,0,0);
@@ -103,12 +128,8 @@ public class  gamepad2Controls extends Thread{
                     SM.setPos(CONSTANTS.SLIDEROTATEMIN, 0.2);
                 }
                 if(-gamepad2.right_stick_y >= 0.3 && !gamepad2.back){
-                    SM.setPos(CONSTANTS.SLIDEROTATEMAX, 0.3);
+                    SM.setPos(SLIDEROTATEMAX, 0.3);
                 }
-                /*if(sr.getCurrentPosition() > CONSTANTS.SLIDEROTATEMAX - 10 && !(-gamepad2.right_stick_y <= -0.3)){
-                    sr.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                    sr.setPower(0.01);
-                }*/
                 if(gamepad2.b) {
                     clawRotateServo.setServoPosition(CONSTANTS.SERVOROTATELOW);
                 }
@@ -123,10 +144,11 @@ public class  gamepad2Controls extends Thread{
                 }
                 if(gamepad2.right_bumper){ // close
                     clawServo.setServoPosition(CONSTANTS.SERVOCLOSE);
+                    mainFile.telemetry.addLine("Close");
                 }
                 if(gamepad2.left_bumper) { //open
                     clawServo.setServoPosition(CONSTANTS.SERVOOPEN);
-
+                    mainFile.telemetry.addLine("Open");
                 }
                 if(gamepad2.dpad_left){
                     clawRotateServo2.setServoPosition(0.7);//This sets the claw to the initial straight position. We have done 0.7 as the claw has an initial movement and this compensates for it.
@@ -135,7 +157,6 @@ public class  gamepad2Controls extends Thread{
                 }else{
                     clawRotateServo2.setServoPosition(CONSTANTS.SERVOROTATE2MID);
                 }
-
 
             }
         }catch(Exception e){

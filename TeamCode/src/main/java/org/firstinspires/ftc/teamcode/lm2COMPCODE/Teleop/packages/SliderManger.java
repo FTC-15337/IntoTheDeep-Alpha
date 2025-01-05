@@ -46,6 +46,7 @@ public class SliderManger {
         {
             pos = SLIDERDOWNMAXEXTENTION;
         }
+
         controller.setTargetPosition(pos);
         controller.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
